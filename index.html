@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GSPB-Test 17.11.2026 – Lernseite</title>
+<style>
+:root{--bg:#f7f6f2;--card:#fff;--ink:#1f2328;--muted:#5d6670;--line:#e3e0d8;--acc:#1d4e89;--acc2:#e8eef7;--red:#b4232a;--ok:#2e7d32;--okbg:#e7f4e8;--zbg:#eeeeee;--zline:#9e9e9e;--note:#8a5a00;--notebg:#fff4dc}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;font-size:16px}
+header{background:var(--acc);color:#fff;padding:14px 16px 0}
+header h1{margin:0 0 4px;font-size:1.25rem}
+header p{margin:0 0 10px;font-size:.9rem;opacity:.9}
+#progress{height:6px;background:rgba(255,255,255,.25);border-radius:3px;margin-bottom:10px;overflow:hidden}
+#progress div{height:100%;background:#7fd18a;width:0;transition:width .3s}
+nav{display:flex;gap:4px;overflow-x:auto;padding-bottom:0;scrollbar-width:thin}
+nav button{flex:0 0 auto;border:0;background:rgba(255,255,255,.12);color:#fff;padding:9px 12px;border-radius:8px 8px 0 0;font-size:.9rem;cursor:pointer;white-space:nowrap}
+nav button.active{background:var(--bg);font-weight:700}
+nav button .chk{color:#7fd18a;margin-left:4px}
+nav button.active .chk{color:var(--ok)}
+main{max-width:960px;margin:0 auto;padding:16px}
+h2{color:var(--acc);margin:6px 0 12px;font-size:1.4rem}
+h3{margin:22px 0 8px;font-size:1.1rem;border-bottom:2px solid var(--line);padding-bottom:4px}
+h4{margin:14px 0 6px;font-size:1rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:10px 0}
+.kern{background:var(--acc2);border-left:5px solid var(--acc);padding:10px 14px;border-radius:6px;font-weight:500}
+.zusatz{background:var(--zbg);border-left:5px solid var(--zline);padding:8px 12px;border-radius:6px;margin:10px 0;font-size:.95rem}
+.zusatz::before{content:"Zusatzinfo";display:block;font-size:.75rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#616161;margin-bottom:2px}
+.zi{background:var(--zbg);border-radius:4px;padding:0 4px;font-size:.93em}
+.zi::before{content:"Zusatz: ";font-weight:600;color:#616161;font-size:.85em}
+.note{background:var(--notebg);color:var(--note);border-radius:4px;padding:0 4px;font-size:.88em;font-style:italic}
+.merke{background:#fff8e1;border:2px solid #f2c94c;border-radius:10px;padding:10px 16px}
+.merke h3{border:0;margin-top:4px}
+.legend{font-size:.85rem;color:var(--muted);margin:4px 0 12px}
+.legend span{margin-right:10px}
+table{border-collapse:collapse;width:100%;margin:8px 0;font-size:.93rem;background:#fff}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:#f0efe9}
+.scroll{overflow-x:auto}
+ul,ol{padding-left:22px;margin:6px 0}
+li{margin:3px 0}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px;margin:8px 0}
+.flow .box{flex:1 1 180px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:.92rem}
+.flow .box b.t{display:block;color:var(--acc);margin-bottom:2px}
+.arrow{align-self:center;font-size:1.3rem;color:var(--muted)}
+details.q{background:#fff;border:1px solid var(--line);border-radius:8px;margin:8px 0;padding:8px 12px}
+details.q summary{cursor:pointer;font-weight:500}
+details.q summary .op{display:inline-block;background:var(--acc);color:#fff;font-size:.75rem;padding:1px 7px;border-radius:10px;margin-right:6px;text-transform:uppercase;letter-spacing:.03em}
+details.q .ans{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
+.btn{border:1px solid var(--acc);background:var(--acc);color:#fff;padding:8px 14px;border-radius:8px;cursor:pointer;font-size:.95rem}
+.btn.sec{background:#fff;color:var(--acc)}
+.btn.done{background:var(--ok);border-color:var(--ok)}
+.toolbar{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 14px}
+.toolbar .btn{padding:6px 10px;font-size:.88rem}
+.toolbar .btn.on{background:var(--acc);color:#fff}
+.toolbar .btn:not(.on){background:#fff;color:var(--acc)}
+.tl{position:relative;margin-left:8px;padding-left:18px;border-left:3px solid var(--line)}
+.tl .ev{position:relative;margin:0 0 12px}
+.tl .ev::before{content:"";position:absolute;left:-26px;top:6px;width:13px;height:13px;border-radius:50%;background:var(--c,#999);border:2px solid #fff}
+.tl .d{font-weight:700}
+.tag{display:inline-block;font-size:.72rem;padding:1px 7px;border-radius:10px;color:#fff;background:var(--c,#999);margin-left:6px;vertical-align:middle}
+input[type=search]{width:100%;padding:10px 12px;font-size:1rem;border:1px solid var(--line);border-radius:8px;margin:6px 0 12px}
+.gl dt{font-weight:700;margin-top:10px}
+.gl dd{margin:2px 0 0 0;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.fc-wrap{perspective:1000px;max-width:560px;margin:10px auto}
+.fc{position:relative;height:260px;transition:transform .5s;transform-style:preserve-3d;cursor:pointer}
+.fc.flip{transform:rotateY(180deg)}
+.fc .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:12px;padding:20px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:1.1rem;border:1px solid var(--line);overflow:auto}
+.fc .front{background:#fff}
+.fc .back{background:var(--acc2);transform:rotateY(180deg);font-size:1rem}
+.fc-nav{display:flex;justify-content:space-between;align-items:center;max-width:560px;margin:8px auto}
+.qopt{display:block;width:100%;text-align:left;margin:6px 0;padding:10px 12px;border:1px solid var(--line);background:#fff;border-radius:8px;cursor:pointer;font-size:.98rem}
+.qopt.right{background:var(--okbg);border-color:var(--ok)}
+.qopt.wrong{background:#fdecea;border-color:var(--red)}
+.qexp{margin-top:8px;padding:8px 12px;border-radius:8px;background:#f4f4f4}
+.small{font-size:.85rem;color:var(--muted)}
+.ov-topic{cursor:pointer}
+.ov-topic:hover{border-color:var(--acc)}
+.badge-ok{color:var(--ok);font-weight:700;font-size:.85rem}
+.zus-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+.rel{font-size:.75rem;font-weight:700;text-transform:uppercase;padding:1px 7px;border-radius:10px;color:#fff;margin-right:6px}
+.r-u{background:#1d4e89}.r-f{background:#b4232a}.r-k{background:#2e7d32}.r-b{background:#7b1fa2}
+
+main{--tc:#1d4e89}
+main h2{color:var(--tc)}
+main h3{color:var(--tc);border-bottom:3px solid color-mix(in srgb,var(--tc) 30%,transparent)}
+main h4{color:color-mix(in srgb,var(--tc) 80%,#000)}
+mark{background:linear-gradient(transparent 45%,#ffe066 45%);color:inherit;font-weight:700;padding:0 2px;border-radius:2px}
+.kern{background:color-mix(in srgb,var(--tc) 10%,#fff);border-left-color:var(--tc)}
+th{background:color-mix(in srgb,var(--tc) 14%,#fff)}
+details.q summary .op{background:var(--tc)}
+.btn{background:var(--tc);border-color:var(--tc)}
+.btn.sec{color:var(--tc);background:#fff}
+.sec-card{background:#fff;border:1px solid var(--line);border-top:6px solid var(--tc);border-radius:12px;padding:6px 16px 16px;margin:10px 0;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.sec-card>h3:first-child{margin-top:10px}
+.subnav{display:flex;gap:6px;overflow-x:auto;padding:4px 0 8px;scrollbar-width:thin}
+.subnav button{flex:0 0 auto;border:2px solid color-mix(in srgb,var(--tc) 45%,#fff);background:#fff;color:var(--tc);border-radius:20px;padding:6px 12px;font-size:.88rem;cursor:pointer;white-space:nowrap}
+.subnav button .n{display:inline-block;min-width:18px;height:18px;line-height:18px;border-radius:9px;background:color-mix(in srgb,var(--tc) 18%,#fff);font-size:.72rem;margin-right:5px;text-align:center}
+.subnav button.on{background:var(--tc);color:#fff;border-color:var(--tc)}
+.subnav button.on .n{background:rgba(255,255,255,.3)}
+.subnav button.seen:not(.on){background:color-mix(in srgb,var(--tc) 8%,#fff)}
+.pager{display:flex;justify-content:space-between;gap:8px;margin:14px 0 4px}
+.pager button{flex:1 1 0;max-width:48%;padding:10px 12px;border-radius:10px;border:2px solid var(--tc);background:#fff;color:var(--tc);font-size:.92rem;cursor:pointer;text-align:left}
+.pager button.nx{background:var(--tc);color:#fff;text-align:right;margin-left:auto}
+.pager button small{display:block;opacity:.8;font-size:.75rem}
+.stepinfo{font-size:.8rem;color:var(--muted);margin:2px 0 0}
+.bar{height:5px;background:color-mix(in srgb,var(--tc) 15%,#fff);border-radius:3px;overflow:hidden;margin:4px 0 6px}
+.bar div{height:100%;background:var(--tc)}
+nav button{border-bottom:4px solid var(--c,transparent)}
+nav button.active{color:var(--c,var(--acc))}
+.letters{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
+.letters button{border:1px solid var(--line);background:#fff;color:var(--tc);border-radius:6px;padding:4px 8px;cursor:pointer;font-weight:700}
+.letters button.on{background:var(--tc);color:#fff}
+.gl dt{color:var(--tc)}
+@media (max-width:600px){header p{display:none}header h1{font-size:1.05rem}main h2{font-size:1.15rem;margin:2px 0 6px}body{font-size:15px}main{padding:10px}.card{padding:12px}.fc{height:300px}}
+</style>
+</head>
+<body>
+<header>
+<h1>GSPB-Test am 17.11.2026 – Lernseite</h1>
+<p>7. Klasse AHS · Revolutionen, Napoleon, Wiener Kongress, Vormärz, Liberalismus & Nationalismus, Industrielle Revolution</p>
+<div id="progress"><div></div></div>
+<nav id="nav"></nav>
+</header>
+<main id="main"></main>
+<script>
+const TOPICS = [];
+TOPICS.push({
+id:"usa", tab:"USA", color:"#1565c0",
+title:"USA: Unabhängigkeit, Verfassung und politisches System",
+ueberblick:"Die 13 britischen Kolonien in Nordamerika wehren sich gegen Steuern ohne Mitsprache („No taxation without representation“) und erklären am 4. Juli 1776 ihre Unabhängigkeit. Die Verfassung von 1787 und die Bill of Rights (1791) setzen Ideen der Aufklärung um und werden Vorbild für Frankreich und viele Demokratien. Das US-System ist eine präsidentielle Demokratie mit starker Gewaltentrennung.",
+kern:"Die USA sind der erste Staat, in dem die Ideen der Aufklärung (Volkssouveränität, Menschenrechte, Gewaltenteilung) in einer Verfassung umgesetzt werden. Das macht sie zum Vorbild für die Französische Revolution.",
+body:`
+<h3 data-s="7-jähriger Krieg">1. Vorgeschichte: Der Siebenjährige Krieg (1756–1763)</h3>
+<ul>
+<li>Erster <b>global geführter Konflikt</b>, auch zwischen <b>England und Frankreich</b>. Kriegsschauplätze: <b>Europa, Indien, Nordamerika</b>.</li>
+<li><b>Ergebnis:</b> England siegt. Frankreich verliert den Großteil seiner Kolonien in Nordamerika und Indien.</li>
+<li><b>Folgen:</b> Beide Staaten haben hohe <b>Kriegsschulden</b>. England will sie über Steuern in den Kolonien bezahlen lassen. Frankreich unterstützt später (unter <b>Ludwig XVI.</b>) die Amerikaner militärisch im Unabhängigkeitskrieg (<mark>1775–1783</mark>), aus Rache an England.</li>
+<li><b>Marquis de La Fayette</b> kämpft als Freiwilliger auf der Seite der Amerikaner und wird US-Kriegsheld. Später ist er Kommandeur der <b>Nationalgarde</b> der Französischen Revolution.</li>
+<li>Spuren der französischen Kolonialzeit in den USA: <b>St. Louis, Louisiana</b> (nach Ludwig XIV.), <b>New Orleans, Baton Rouge</b>, <b>Mardi Gras</b>.</li>
+</ul>
+<h3 data-s="Weg zur Unabhängigkeit">2. Der Weg zur Unabhängigkeit</h3>
+<ul>
+<li>An der Ostküste Nordamerikas entstehen bis 1756 insgesamt <b><mark>13 britische Kolonien</mark></b>. Sie fordern von London mehr Eigenständigkeit.</li>
+<li>Nach dem gewonnenen Kolonialkrieg gegen Frankreich erhöhen die Briten <b>Steuern und Zölle</b> (Zucker, Tee, Wein usw.) drastisch, um die Kriegskosten zu refinanzieren. Es folgen Streiks und Proteste.</li>
+<li><b><mark>„No taxation without representation“</mark></b>: Die Amerikaner sind empört, Steuern zu zahlen, obwohl sie im <b>britischen Parlament nicht vertreten</b> sind.</li>
+<li>Die Briten nehmen alle Steuern zurück, <b>außer der Teesteuer</b>. Sie geben also in der Sache nach, aber <b>nicht im Prinzip</b>. Genau um dieses Prinzip ging es vielen Siedlern.</li>
+<li><b>Boston Tea Party</b> (16. Dezember 1773): Als Indianer verkleidete Amerikaner werfen eine Ladung britischen Tees in den Hafen von Boston. <span class="note">(im Arbeitsblatt steht der Satz „1775 eskalierte die Situation“ direkt davor; die Tea Party selbst war 1773, der Krieg begann 1775)</span>
+<ul><li>= <b>unwiderruflicher Akt</b>, bewusst um einen Krieg auszulösen.</li>
+<li>Warum Indianerverkleidung? Der Indianer ist ein Symbol für <b>Amerika und Freiheit</b>.</li></ul></li>
+<li><b>Unabhängigkeitskrieg 1775–1783</b>. Erfolgreicher General: <b>George Washington</b>.</li>
+</ul>
+<h3 data-s="Unabhängigkeitserklärung">3. Die Unabhängigkeitserklärung (4. Juli 1776)</h3>
+<ul>
+<li>Die Abgeordneten aller <b>13 Kolonien</b> unterzeichnen die von <b><mark>Thomas Jefferson</mark></b> verfasste <b>Declaration of Independence</b>. Sie ist die <b>Gründungsurkunde der USA</b>.</li>
+<li>Der <b>4. Juli</b> ist seither der <b>Unabhängigkeitstag</b> (Nationalfeiertag).</li>
+<li><b>Benjamin Franklin</b> (Verleger, Erfinder, Diplomat) arbeitet an der Unabhängigkeitserklärung und an der Verfassung mit.</li>
+</ul>
+<h4>Grundrechte in der Unabhängigkeitserklärung</h4>
+<ul>
+<li>Alle Menschen sind <b>gleich erschaffen</b>.</li>
+<li><b>Unveräußerliche Rechte</b>: <b><mark>Leben, Freiheit und das Streben nach Glück</mark></b> („pursuit of happiness“).</li>
+</ul>
+<h4>Aufklärerische Gedanken darin</h4>
+<ul>
+<li><b>Naturrecht</b>: Rechte kommen von der Natur bzw. vom Schöpfer, nicht vom König.</li>
+<li><b>Volkssouveränität / Gesellschaftsvertrag</b>: Regierungen haben ihre Macht von der <b><mark>Zustimmung der Regierten</mark></b>.</li>
+<li><b>Widerstandsrecht</b>: Wenn eine Regierung diese Rechte zerstört, hat das Volk das Recht (ja die Pflicht), sie zu ändern oder abzuschaffen.</li>
+<li>Vorwurf an den König von Großbritannien: Er wolle eine <b>„absolute Tyrannei“</b> errichten.</li>
+</ul>
+<h3 data-s="Verfassung">4. Die US-Verfassung („We the people …“)</h3>
+<ul>
+<li>Beschlossen <b>1787</b> von der verfassungsgebenden Versammlung in <b>Philadelphia</b>, in Kraft am <b><mark>4. März 1789</mark></b>. Sie ist das oberste Gesetz der USA.</li>
+<li>Sie gilt als die <b>älteste (noch gültige) Verfassung</b>, weil sie in ihren Grundprinzipien bis heute den Bestimmungen aus dem <b>18. Jh.</b> entspricht. Modell für viele andere <b>demokratische</b> Verfassungen.</li>
+<li><span class="note">(im Arbeitsblatt: „von den dreizehn ehemaligen Kolonien entworfen“; genau genommen schickten 12 Staaten Delegierte, Rhode Island blieb fern)</span></li>
+</ul>
+<h4>Präambel 1787: Schlüsselbegriffe und Prinzipien</h4>
+<table><tr><th>Englisch</th><th>Bedeutung</th><th>Prinzip</th></tr>
+<tr><td>We the People</td><td>Wir, das Volk</td><td>Volkssouveränität</td></tr>
+<tr><td>a more perfect Union</td><td>eine vollkommenere Union</td><td>Einheit / Bundesstaat</td></tr>
+<tr><td>establish Justice</td><td>Gerechtigkeit schaffen</td><td>Rechtsstaat</td></tr>
+<tr><td>insure domestic Tranquility</td><td>Ruhe im Inneren sichern</td><td>innere Sicherheit</td></tr>
+<tr><td>provide for the common defence</td><td>gemeinsame Verteidigung</td><td>äußere Sicherheit</td></tr>
+<tr><td>promote the general Welfare</td><td>allgemeines Wohl fördern</td><td>Gemeinwohl</td></tr>
+<tr><td>secure the Blessings of Liberty</td><td>Freiheit sichern, auch für die Nachkommen</td><td>Freiheit</td></tr></table>
+<h3 data-s="Bill of Rights">5. Bill of Rights (1791)</h3>
+<p><b><mark>10 Zusatzartikel</mark></b> zur Verfassung mit <b>unveräußerlichen Bürgerrechten</b>, z.B. <b>Religions-, Versammlungs-, Presse- und Redefreiheit</b>, aber auch das <b>Recht, Waffen zu tragen</b> (heute sehr umstritten).</p>
+<div class="scroll"><table><tr><th>Art.</th><th>Inhalt (kurz)</th><th>Ein Begriff</th></tr>
+<tr><td>1</td><td>Kein Gesetz über eine Staatsreligion; freie Religionsausübung, Rede-, Pressefreiheit, Versammlungsrecht, Petitionsrecht</td><td>Meinungs- und Religionsfreiheit</td></tr>
+<tr><td>2</td><td>Recht, Waffen zu besitzen und zu tragen (Miliz)</td><td>Waffenrecht</td></tr>
+<tr><td>3</td><td>Keine Einquartierung von Soldaten ohne Zustimmung des Eigentümers</td><td>Schutz des Hauses</td></tr>
+<tr><td>4</td><td>Schutz vor ungerechtfertigter Durchsuchung und Beschlagnahme; Durchsuchungsbefehl nur mit Grund</td><td>Schutz der Privatsphäre</td></tr>
+<tr><td>5</td><td>Anklage durch Geschworene; nicht zweimal für dieselbe Tat; man muss nicht gegen sich selbst aussagen; Eigentum nur gegen Entschädigung</td><td>Rechtsschutz / Eigentumsschutz</td></tr>
+<tr><td>6</td><td>Schnelles, öffentliches Verfahren vor unparteiischen Geschworenen; Recht auf Verteidiger und Zeugen</td><td>faires Verfahren</td></tr>
+<tr><td>7</td><td>Geschworenenverfahren auch in Zivilsachen (über 20 Dollar)</td><td>Geschworenengericht</td></tr>
+<tr><td>8</td><td>Keine übermäßigen Kautionen, Geldstrafen, keine grausamen Strafen</td><td>Verbot grausamer Strafen</td></tr>
+<tr><td>9</td><td>Aufgezählte Rechte schränken andere Rechte des Volkes nicht ein</td><td>weitere Rechte bleiben</td></tr>
+<tr><td>10</td><td>Was der Bund nicht hat, bleibt bei den Einzelstaaten oder beim Volk</td><td>Föderalismus</td></tr></table></div>
+<p><b>„Schutz vor Willkür“</b> bedeutet: Der Staat darf niemanden ohne Gesetz, ohne Grund und ohne faires Gerichtsverfahren verhaften, durchsuchen, bestrafen oder enteignen (Art. 4–8).</p>
+<h3 data-s="Personen & Flagge">6. Wichtige Personen und Symbole</h3>
+<ul>
+<li><b>George Washington</b>: General im Unabhängigkeitskrieg, <b><mark>1. Präsident 1789–1797</mark></b>, auf der 1-Dollar-Note.</li>
+<li><b>Thomas Jefferson</b>: Hauptverfasser der Unabhängigkeitserklärung.</li>
+<li><b>Benjamin Franklin</b>: Verleger, Erfinder, Diplomat.</li>
+<li><b>Freiheitsstatue</b>: Geschenk Frankreichs, <b>1886</b>.</li>
+</ul>
+<h4>Die US-Flagge</h4>
+<div class="zusatz">Die <b>13 Streifen</b> stehen für die 13 Gründungskolonien. Die <b>Sterne</b> stehen für die Bundesstaaten: Anfangs 13 Sterne, mit jedem neuen Staat kam ein Stern dazu (Ausdehnung nach Westen, siehe historische Karte). Heute <b>50 Sterne</b> (seit 1960, mit Hawaii).</div>
+<h3 data-s="Auswirkungen">7. Auswirkungen der US-Unabhängigkeit</h3>
+<ul>
+<li><b><mark>Inspiration für die Französische Revolution</mark></b> (Vorbild eines Staates, der nicht absolut regiert wird).</li>
+<li><b>Vorbild für alle demokratischen Staaten</b>.</li>
+<li><b>Unabhängigkeitskampf in Lateinamerika</b> (19. Jh.), Freiheitsheld <b>Simón Bolívar</b> (1783–1830). Er beginnt während der napoleonischen Kriege, als Spanien von Frankreich besetzt war: Unabhängigkeit von Spanien bzw. Portugal (Brasilien).</li>
+<li>Wappen von <b>Kuba</b> und <b>Argentinien</b> zeigen die rote Freiheitsmütze der Französischen Revolution: Die Ideen wandern von Amerika nach Frankreich und wieder zurück nach Amerika.</li>
+<li><b>Monroe-Doktrin</b>: „<b><mark>Amerika den Amerikanern</mark></b>“ (5. US-Präsident James Monroe, 1817–1825). Die USA unterstützen die Unabhängigkeit Lateinamerikas. Seither „Dollarimperialismus“: Lateinamerika gilt als <b>„Hinterhof der USA“</b>. <span class="zi">verkündet 1823; Europa soll sich nicht in Amerika einmischen</span></li>
+</ul>
+<h3 data-s="Wahlrecht: Großvaterklausel">8. Das US-Wahlrecht: einst und heute</h3>
+<p><b>Großvaterklausel:</b> In mehreren Südstaaten wurde eine <b>„poll tax“</b> (Steuer, um wählen zu dürfen) eingeführt. Ausgenommen waren Bürger, deren <b>Väter und Großväter schon wahlberechtigt</b> waren. Das richtete sich vor allem gegen <b><mark>Afroamerikaner</mark></b> (ehemalige Sklaven, deren Großväter nie wählen durften) und arme Weiße. <span class="note">(in der Präsentation: „ab 1880“; historisch: Kopfsteuern ab den 1870er/1880er Jahren, die Großvaterklauseln selbst erst ab 1898, 1915 vom Obersten Gerichtshof verboten)</span> 1964 wurde diese Form der mittelbaren Diskriminierung im <b>24. Zusatzartikel</b> verboten (Bürgerrechtsbewegung, <b>Martin Luther King</b>).</p>
+<p><b>Warum wird immer am Dienstag gewählt?</b> (FAZ-Artikel) Das Wahlgesetz stammt aus einer Zeit, in der Amerika von der <b>Landwirtschaft</b> geprägt war und es keine Autos gab. Montag ging nicht (Anreise am Sonntag = Kirchgang), Mittwoch war oft Markttag. <b>November</b>, weil die Ernte vorbei und das Wetter noch mild war. Nicht am 1. November (Allerheiligen, Buchführung der Kaufleute). Regel: <b>Dienstag nach dem ersten Montag im November</b>.</p>
+<h3 data-s="Wahlrecht: Ausweitung">8b. Ausweitung des Wahlrechts</h3>
+<div class="zusatz"><b>Wer durfte bei den ersten Präsidentenwahlen (1788/89) wählen?</b> Nur <b>weiße Männer mit Besitz</b> (Grund oder Steuerleistung), je nach Bundesstaat verschieden. <b>Nicht</b> wählen durften: Frauen, Sklaven, meist auch freie Afroamerikaner, Native Americans (Indianer) und arme Männer.
+<div class="scroll"><table><tr><th>Jahr</th><th>Ausweitung des Wahlrechts</th><th>Zusammenhang mit der US-Geschichte</th></tr>
+<tr><td>bis ca. 1850</td><td>Besitzklauseln fallen weg: alle weißen Männer dürfen wählen</td><td>Demokratisierung, Ausdehnung nach Westen</td></tr>
+<tr><td>1865</td><td>13. Zusatzartikel: Sklaverei abgeschafft</td><td>Ende des Bürgerkriegs (1861–1865)</td></tr>
+<tr><td>1870</td><td>15. Zusatzartikel: Wahlrecht unabhängig von Hautfarbe (für Männer)</td><td>nach dem Bürgerkrieg; im Süden mit poll tax, Lesetests und Großvaterklausel umgangen</td></tr>
+<tr><td>1920</td><td>19. Zusatzartikel: Frauenwahlrecht</td><td>Frauenbewegung, Erster Weltkrieg</td></tr>
+<tr><td>1924</td><td>Native Americans werden Staatsbürger</td><td>Indian Citizenship Act</td></tr>
+<tr><td>1964</td><td>24. Zusatzartikel: keine Wahlsteuer (poll tax) bei Bundeswahlen</td><td>Bürgerrechtsbewegung (M. L. King)</td></tr>
+<tr><td>1965</td><td>Voting Rights Act: Lesetests verboten, Schutz schwarzer Wähler</td><td>Bürgerrechtsbewegung</td></tr>
+<tr><td>1971</td><td>26. Zusatzartikel: Wahlalter 18 statt 21</td><td>Vietnamkrieg („alt genug zum Kämpfen, alt genug zum Wählen“)</td></tr></table></div></div>
+<h3 data-s="Politisches System">9. Das politische System der USA (präsidentielle Demokratie)</h3>
+<div class="flow">
+<div class="box"><b class="t">Kongress (Legislative)</b>= <b><mark>Repräsentantenhaus + Senat</mark></b><br><b>Repräsentantenhaus:</b> auf <b>2 Jahre</b> gewählt; Anzahl der Abgeordneten hängt von der <b>Bevölkerungszahl</b> des Staates ab <span class="zi">435 Sitze</span><br><b>Senat:</b> <b><mark>2 Senatoren</mark></b> pro Bundesstaat, auf <b>6 Jahre</b> gewählt</div>
+<div class="box"><b class="t">Präsident (Exekutive)</b>Gewählt durch <b>Wahlmänner</b> auf <b>4 Jahre</b>, maximal <b>2 Amtsperioden</b>.<br>Aufgaben: <b>Staatsoberhaupt, Regierungschef, Oberbefehl über die Streitkräfte, Chef der Bundesbürokratie</b></div>
+<div class="box"><b class="t">Gerichte (Judikative)</b><span class="zi">Oberster Gerichtshof (Supreme Court) prüft Gesetze auf Verfassungsmäßigkeit</span></div>
+</div>
+<ul>
+<li><b>Midterm-Elections</b>: alle 2 Jahre. Alle Mitglieder des <b>Repräsentantenhauses</b> und <b>ein Drittel des Senats</b> werden neu gewählt. Die Wähler können so die Macht des Präsidenten nach der Hälfte seiner <b>4-jährigen</b> Amtszeit stärken oder schwächen.</li>
+<li><b>Wahlmänner:</b> Jeder Bundesstaat bekommt so viele Wahlmänner, wie er <b>Kongressabgeordnete</b> hat (Abgeordnete im Repräsentantenhaus + 2 Senatoren). <span class="zi">insgesamt 538, man braucht 270</span></li>
+<li><b><mark>„The winner takes it all“</mark></b>: ALLE Wahlmänner eines Staates gehen an den Sieger in diesem Staat. Die Stimmen des Verlierers sind <b>verloren</b>. Ausnahme: <b>Maine und Nebraska</b> (anteilige Verteilung).</li>
+<li>Deshalb konnten <b>George W. Bush (2000)</b> und <b>Donald Trump (2016)</b> gewinnen, obwohl sie insgesamt <b>weniger</b> Stimmen als ihre Gegner hatten.</li>
+</ul>
+<h3 data-s="Vergleich mit Österreich">10. Vergleich mit Österreich und Regierungsformen</h3>
+<table><tr><th>Funktion</th><th>USA</th><th>Österreich</th></tr>
+<tr><td>Staatsoberhaupt</td><td>Präsident</td><td>Bundespräsident</td></tr>
+<tr><td>Oberbefehl Streitkräfte</td><td>Präsident</td><td>Bundespräsident</td></tr>
+<tr><td>Regierungschef</td><td>Präsident</td><td>Bundeskanzler</td></tr>
+<tr><td>Chef der Bundesbürokratie</td><td>Präsident</td><td>gibt es nicht; Minister sind Chefs ihrer Ressorts, am ehesten Bundeskanzler</td></tr></table>
+<h4>Demokratie hat viele Gesichter</h4>
+<ul>
+<li><b>Präsidentielle Demokratie (USA):</b> Der Präsident (= Exekutive) wird gewählt und bildet die Regierung. <b>Starke Gewaltentrennung</b>. Das Parlament wird separat gewählt.</li>
+<li><b>Parlamentarische Demokratie (Österreich):</b> Die Regierung wird aus dem Parlament gebildet.</li>
+<li><b>Wo ist in Österreich die Gewaltentrennung aufgelöst?</b> <span class="zi">Zwischen Legislative und Exekutive: Die Regierung stützt sich auf die Mehrheit im Nationalrat und kann von ihm durch ein Misstrauensvotum abgesetzt werden. Regierung und Parlamentsmehrheit gehören zu denselben Parteien.</span></li>
+</ul>
+<div class="zusatz"><b>Regierungsformen weltweit (Beispiele):</b>
+<ul><li>Präsidentielle Demokratie: USA, Brasilien, Mexiko</li>
+<li>Parlamentarische Demokratie: Österreich, Deutschland, Italien</li>
+<li>Semipräsidentiell (Mischform): Frankreich</li>
+<li>Parlamentarische Monarchie: Großbritannien, Spanien, Schweden, Niederlande</li>
+<li>Konstitutionelle Monarchie (Monarch regiert, muss sich aber an die <b>Verfassung</b> halten): z.B. Marokko, Jordanien</li>
+<li>Absolute Monarchie (Monarch regiert ohne Einschränkungen): Saudi-Arabien, Oman</li>
+<li>(kommunistisches) Einparteiensystem: China, Nordkorea, Vietnam, Kuba</li></ul></div>
+`,
+ursachen:[["Ursachen","Kriegsschulden aus dem 7-jährigen Krieg → höhere Steuern und Zölle; keine Vertretung im britischen Parlament; Ideen der Aufklärung"],["Verlauf","Proteste → Boston Tea Party 1773 → Unabhängigkeitskrieg 1775–1783 → Unabhängigkeitserklärung 4.7.1776 → Verfassung 1787 (in Kraft 1789) → Bill of Rights 1791"],["Folgen","Erster demokratischer Verfassungsstaat; Vorbild für Frankreich und Lateinamerika; Frankreich noch höher verschuldet"]],
+personen:[["Person","George Washington","General, 1. Präsident 1789–1797"],["Person","Thomas Jefferson","Hauptverfasser der Unabhängigkeitserklärung"],["Person","Benjamin Franklin","Verleger, Erfinder, Diplomat"],["Person","Marquis de La Fayette","Französischer Freiwilliger, US-Kriegsheld, später Kommandeur der Nationalgarde"],["Person","Simón Bolívar","Freiheitsheld Lateinamerikas (1783–1830)"],["Person","James Monroe","5. US-Präsident (1817–1825), Monroe-Doktrin"],["Datum","1756–1763","Siebenjähriger Krieg"],["Datum","1773","Boston Tea Party"],["Datum","1775–1783","Unabhängigkeitskrieg"],["Datum","4. Juli 1776","Unabhängigkeitserklärung"],["Datum","1787 / 4. März 1789","Verfassung beschlossen / in Kraft"],["Datum","1791","Bill of Rights"],["Begriff","No taxation without representation","Keine Steuern ohne Vertretung im Parlament"],["Begriff","Wahlmänner","wählen den Präsidenten; „The winner takes it all“"],["Begriff","Großvaterklausel","Wahlsteuer mit Ausnahme für Nachkommen früherer Wähler; gegen Afroamerikaner"]],
+merke:["„No taxation without representation“ und die Boston Tea Party führen zum Unabhängigkeitskrieg (1775–1783).","4. Juli 1776: Unabhängigkeitserklärung von Thomas Jefferson; Rechte auf Leben, Freiheit, Streben nach Glück; Macht kommt vom Volk.","Verfassung 1787 (in Kraft 1789) + Bill of Rights 1791 = Grundrechte und Gewaltenteilung; Vorbild für Frankreich.","Kongress = Repräsentantenhaus (2 Jahre) + Senat (2 pro Staat, 6 Jahre); Präsident 4 Jahre, max. 2 Amtszeiten, gewählt durch Wahlmänner.","USA = präsidentielle Demokratie, Österreich = parlamentarische Demokratie."],
+fragen:[
+{op:"nennen",q:"Nenne die Grundrechte, die in der Unabhängigkeitserklärung verankert sind.",a:"Alle Menschen sind gleich erschaffen; unveräußerliche Rechte auf Leben, Freiheit und das Streben nach Glück; Recht des Volkes, eine schlechte Regierung abzuschaffen."},
+{op:"erklären",q:"Erkläre den Slogan „No taxation without representation“.",a:"Die Kolonisten mussten nach dem 7-jährigen Krieg höhere Steuern an Großbritannien zahlen, waren aber im britischen Parlament nicht vertreten. Sie forderten: Nur wer mitbestimmen darf, muss auch Steuern zahlen."},
+{op:"erklären",q:"Erkläre, warum die Boston Tea Party ein „unwiderruflicher Akt“ war.",a:"Die Briten hatten alle Steuern außer der Teesteuer zurückgenommen (nachgegeben in der Sache, nicht im Prinzip). Mit der Vernichtung des Tees 1773 forderten die Siedler England bewusst heraus; danach war eine friedliche Lösung kaum mehr möglich, es kam zum Krieg."},
+{op:"beschreiben",q:"Beschreibe das System der Präsidentenwahl in den USA.",a:"Das Volk wählt Wahlmänner. Jeder Staat hat so viele Wahlmänner wie Kongressabgeordnete. Meist gilt „The winner takes it all“: alle Wahlmänner eines Staates gehen an den Sieger (Ausnahme Maine, Nebraska). Daher kann jemand mit weniger Stimmen insgesamt gewinnen (Bush 2000, Trump 2016)."},
+{op:"vergleichen",q:"Vergleiche die präsidentielle Demokratie der USA mit der parlamentarischen Demokratie Österreichs.",a:"USA: Präsident wird separat gewählt, ist Staatsoberhaupt und Regierungschef, starke Gewaltentrennung. Österreich: Bundespräsident ist Staatsoberhaupt, Bundeskanzler Regierungschef; Regierung wird aus dem Parlament gebildet und braucht dessen Mehrheit, daher schwächere Trennung von Legislative und Exekutive."},
+{op:"analysieren",q:"Analysiere, welche Prinzipien der Präambel der US-Verfassung zugrunde liegen.",a:"Volkssouveränität (We the People), Einheit (Union), Rechtsstaat (Justice), innere und äußere Sicherheit, Gemeinwohl (Welfare), Freiheit (Liberty) auch für kommende Generationen."},
+{op:"erklären",q:"Erkläre, gegen wen die Großvaterklausel gerichtet war.",a:"Gegen Afroamerikaner (deren Großväter als Sklaven nie wählen durften) und arme Menschen: Sie mussten eine Wahlsteuer zahlen, während Nachkommen früherer Wähler (fast nur Weiße) befreit waren. Indirekte Diskriminierung; 1964 durch den 24. Zusatzartikel verboten."},
+{op:"beurteilen",q:"Beurteile die Bedeutung der amerikanischen Unabhängigkeit für Europa.",a:"Sehr groß: Erstmals wurden Ideen der Aufklärung in einem Staat umgesetzt. Frankreich sah, dass ein Staat ohne absoluten König funktioniert; zugleich erhöhte die Kriegshilfe Frankreichs Schulden. Beides trug zur Französischen Revolution bei."}],
+karten:[["Wann wurde die Unabhängigkeitserklärung unterzeichnet?","4. Juli 1776"],["Wer verfasste die Unabhängigkeitserklärung?","Thomas Jefferson"],["Wer war der 1. US-Präsident?","George Washington (1789–1797)"],["Was ist die Bill of Rights?","Die 10 Zusatzartikel zur US-Verfassung (1791) mit Grundrechten"],["Woraus besteht der Kongress?","Repräsentantenhaus (2 Jahre) + Senat (2 Senatoren pro Staat, 6 Jahre)"],["Was bedeutet „The winner takes it all“?","Alle Wahlmänner eines Staates gehen an den Kandidaten mit den meisten Stimmen dort"],["Was sind Midterm-Elections?","Wahlen nach 2 Jahren: ganzes Repräsentantenhaus + 1/3 des Senats"],["Was besagt die Monroe-Doktrin?","„Amerika den Amerikanern“ (James Monroe)"],["Wie lange dauerte der Unabhängigkeitskrieg?","1775–1783"],["Wann trat die US-Verfassung in Kraft?","4. März 1789 (beschlossen 1787 in Philadelphia)"],["Was ist die Großvaterklausel?","Ausnahme von der Wahlsteuer für Bürger, deren Väter/Großväter wählen durften; gegen Afroamerikaner gerichtet"],["Aufgaben des US-Präsidenten?","Staatsoberhaupt, Regierungschef, Oberbefehl Streitkräfte, Chef der Bundesbürokratie"]],
+quiz:[
+["Wann erklärten die 13 Kolonien ihre Unabhängigkeit?",["4. Juli 1789","4. Juli 1776","14. Juli 1789","4. März 1789"],1,"Die Unabhängigkeitserklärung wurde am 4. Juli 1776 unterzeichnet. 14. Juli 1789 ist der Bastillesturm, 4. März 1789 das Inkrafttreten der Verfassung."],
+["Wer ist Hauptverfasser der Unabhängigkeitserklärung?",["George Washington","Abraham Lincoln","Thomas Jefferson","Benjamin Franklin"],2,"Thomas Jefferson. Franklin arbeitete mit, Washington war General und 1. Präsident."],
+["Wie lange ist ein US-Senator gewählt?",["2 Jahre","4 Jahre","6 Jahre","8 Jahre"],2,"Senatoren: 6 Jahre, 2 pro Bundesstaat. Repräsentantenhaus: 2 Jahre."],
+["Was bedeutet „No taxation without representation“?",["Keine Steuern ohne Vertretung im Parlament","Keine Vertretung ohne Steuern","Keine Steuern auf Tee","Keine Steuern für Siedler"],0,"Die Siedler wollten nur Steuern zahlen, wenn sie im britischen Parlament vertreten sind."],
+["Wie viele Kolonien gründeten die USA?",["12","13","15","50"],1,"13 britische Kolonien an der Ostküste; daher 13 Streifen auf der Flagge."],
+["Was regelt die Bill of Rights?",["Die Wahl des Präsidenten","Grundrechte der Bürger","Die Steuern","Die Sklaverei"],1,"10 Zusatzartikel (1791) mit Grundrechten wie Religions-, Presse-, Redefreiheit."],
+["Welches Land ist eine präsidentielle Demokratie?",["Österreich","Deutschland","USA","Großbritannien"],2,"In den USA ist der Präsident Staatsoberhaupt und Regierungschef und wird separat gewählt."],
+["Warum unterstützte Frankreich die Amerikaner?",["Aus Liebe zur Demokratie","Aus Rache an England nach dem 7-jährigen Krieg","Weil Ludwig XVI. Amerikaner war","Weil Napoleon es befahl"],1,"Frankreich hatte im 7-jährigen Krieg gegen England fast alle Kolonien in Nordamerika verloren."]]
+});
+
+TOPICS.push({
+id:"fr", tab:"Frz. Revolution", color:"#c62828",
+title:"Die Französische Revolution (1789–1799)",
+ueberblick:"Hohe Staatsschulden, Steuern nur für den 3. Stand und die Ideen der Aufklärung führen 1789 zur Revolution. Frankreich wird zuerst konstitutionelle Monarchie (1791), dann Republik (1792); der König wird hingerichtet, es folgt die Schreckensherrschaft der Jakobiner (1793–1794) und das Direktorium. 1799 beendet Napoleon die Revolution, ihre Ideen „Freiheit, Gleichheit, Brüderlichkeit“ bleiben.",
+kern:"Das Bürgertum beseitigt den Absolutismus und die Vorrechte von Adel und Kirche. Die Revolution bringt Menschenrechte, Volkssouveränität und Gleichheit vor dem Gesetz, zeigt aber auch, dass diese Werte nicht mit Gewalt und Terror erreicht werden können.",
+body:`
+<p class="small">Quellen: Präsentationen, Arbeitsblatt „Die Französische Revolution (BS 72–77)“, Buchseiten 72–77, Arbeitsblatt Symbole.</p>
+<h3 data-s="Ständegesellschaft">1. Ausgangslage: Absolutismus und Ständegesellschaft</h3>
+<ul>
+<li>Im Gegensatz zu England und den USA herrscht in Frankreich in der 2. Hälfte des 18. Jh. noch der <b>Absolutismus</b>.</li>
+<li><b>1. Stand: Geistlichkeit</b>, <b>2. Stand: Adel</b>: genießen <b>Privilegien</b> wie zur Zeit Ludwigs XIV. und zahlen <b>keine Steuern</b>. Sie wehren sich gegen Reformen.</li>
+<li><b>3. Stand: Bürger + Bauern</b> = <b><mark>98 % der Bevölkerung</mark></b>. Der 3. Stand <b><mark>bezahlt ALLES</mark></b>, hat aber <b><mark>KEINE politischen Rechte</mark></b>.</li>
+<li>Karikatur: Ein alter Bauer trägt einen Adeligen und einen Geistlichen auf dem Rücken („Hoffen wir, dass das Spiel bald ein Ende nimmt“). Aussage: Der 3. Stand trägt die Last der oberen Stände.</li>
+</ul>
+<h3 data-s="Ursachen">2. Ursachen</h3>
+<div class="flow"><div class="box"><b class="t">Hohe Staatsverschuldung</b>luxuriöses Hofleben in <b>Versailles</b>, stehendes Heer, <b><mark>Kriegsschulden</mark></b> (7-jähriger Krieg, amerikanischer Unabhängigkeitskrieg)</div><div class="arrow">→</div><div class="box"><b class="t">Hohe Steuern</b>nur vom 3. Stand eingehoben</div><div class="arrow">→</div><div class="box"><b class="t">Unzufriedenheit</b>3. Stand zahlt alles, hat keine Rechte</div></div>
+<h3 data-s="Staatshaushalt">2b. Staatshaushalt und soziale Lage</h3>
+<h4>Staatshaushalt 1788 (in Livres)</h4>
+<table><tr><th>Ausgaben 629 Mio.</th><th>Einnahmen 503 Mio.</th></tr>
+<tr><td>Schuldendienst (Tilgung und Zinsen) 318 Mio. · Militär 165 Mio. · Verwaltung 110 Mio. · Hofhaltung 36 Mio.</td><td>Steuern, Abgaben, Zölle → <b>Defizit 126 Mio.</b> (Neuverschuldung)</td></tr></table>
+<p class="small">Merke: Fast die Hälfte der Ausgaben ging für alte Schulden drauf.</p>
+<h4>Soziale Lage</h4>
+<ul>
+<li><b>Bauern</b>: hohe Abgaben, große Not, im Winter oft nichts zu essen.</li>
+<li><b>Kleinbürger</b> (Handwerker, Händler) und <b>Lohnarbeiter</b> in den Städten: Lage wird schlechter.</li>
+<li><b>Großbürgertum</b>: wohlhabend, aber von der <b>politischen Mitbestimmung ausgeschlossen</b>; fordert freie Entwicklung der Wirtschaft.</li>
+<li><b>Missernten, Hungersnöte und Teuerungen</b> verschärfen die Wirtschaftskrise (1788/89).</li>
+</ul>
+<h3 data-s="Aufklärung">2c. Weitere Voraussetzungen: Aufklärung</h3>
+<ul>
+<li><b>Rousseau</b>: Gesellschaftsvertrag, <b><mark>Macht muss vom Volk ausgehen</mark></b> (<mark>Volkssouveränität</mark> statt Gottesgnadentum).</li>
+<li><b>Montesquieu</b>: <b>Gewaltenteilung</b>.</li>
+<li><b>Voltaire</b>: konstitutionelle Monarchie nach englischem Vorbild.</li>
+<li><b>Gleichheit der Menschen</b>.</li>
+<li><b>Vorbild USA</b>, wo diese Ideen umgesetzt werden.</li>
+</ul>
+<h3 data-s="Generalstände 1789">3. Anlass: Von den Generalständen zur Nationalversammlung (1789)</h3>
+<ul>
+<li>Um <b>noch mehr Steuern bewilligen zu lassen</b>, beruft König <b>Ludwig XVI.</b> die <b>Ständeversammlung (Generalstände)</b> ein. Sie hatte <b>1614</b> das letzte Mal getagt. Eröffnung am <b>5. Mai 1789</b> in Versailles. <span class="note">(in der Präsentation: „Im Juni 1789“)</span></li>
+<li><b>Zusammensetzung:</b> Je Stand 300 Vertreter vorgesehen; unter Druck des Volkes erhält der 3. Stand <b>600 Vertreter</b>. Abstimmung bisher: <b>1 Stimme pro Stand</b> (1. + 2. Stand konnten den 3. immer überstimmen).</li>
+<li><b>Streit:</b> Abstimmung <b>nach Ständen oder nach Köpfen</b>?</li>
+<li><b><mark>17.6.1789</mark></b>: Der 3. Stand erklärt sich zur <b>(verfassungsgebenden) Nationalversammlung</b> = Vertretung des ganzen Volkes.</li>
+<li><b>Ballhausschwur</b> <span class="zi">20.6.1789</span>: Im Ballhaus (königliche Sporthalle in Versailles) schwören die Vertreter, nicht auseinanderzugehen, bis Frankreich eine <b>Verfassung</b> hat.</li>
+<li>Auch einige Vertreter des 1. und 2. Standes schließen sich an. Der König gibt nach und bestätigt die Nationalversammlung.</li>
+</ul>
+<h3 data-s="Bastille">4. Der Ausbruch: Sturm auf die Bastille (14. Juli 1789)</h3>
+<ul>
+<li>Nachrichten aus Versailles lösen in Paris Unruhen aus. Als der König <b>Truppen zusammenzieht</b>, entlädt sich der Unmut.</li>
+<li>Die Pariser stürmen die <b>Bastille</b> (Gefängnis, Waffenarsenal, <b><mark>Symbol des Ancien Régime</mark></b>). Damit ist die Revolution ausgebrochen. Heute <b>französischer Nationalfeiertag</b>.</li>
+<li><b>Auf dem Land:</b> Bauern bewaffnen sich, greifen Schlösser und Gutsverwaltungen an und <b>verbrennen Abgabenlisten</b> (Bäuerliche Revolution).</li>
+</ul>
+<h3 data-s="Ende des Feudalismus">5. Das Ende von Absolutismus und Feudalismus</h3>
+<ul>
+<li><b>Augustgesetze 1789</b> <span class="zi">4./5. August</span>: <b><mark>Abschaffung des Feudalsystems</mark></b> (grundherrliche Rechte, bäuerliche Pflichten, Privilegien von Adel und Klerus). <b>Auswirkung für die Bauern:</b> Ihre Forderungen sind weitgehend erfüllt, sie werden frei.</li>
+<li><b><mark>26. August 1789: Erklärung der Menschen- und Bürgerrechte</mark></b> nach dem Vorbild der amerikanischen Bill of Rights, als Grundlage einer späteren Verfassung: Die Menschen werden <b>frei und gleich an Rechten</b> geboren. Menschenrechte: <b>Freiheit, Eigentum, Sicherheit, Widerstand gegen Unterdrückung</b>. Der Ursprung jeder Herrschaft liegt <b>beim Volk</b>.</li>
+<li><b>Verhältnis zur Kirche:</b> Die katholische Kirche wird <b>enteignet</b> (Einziehung der Kirchengüter), Schulen verstaatlicht, <b>Zivilehe</b> eingeführt (Trennung von Staat und Kirche). Geistliche, die den <b>Eid</b> auf die neue Ordnung verweigern, werden als Staatsfeinde verfolgt. Folge: Sie und die kirchentreue Bevölkerung werden ein <b>Herd des Widerstands</b> (z.B. Vendée). <span class="note">(im Buch als „Augustgesetze“ zusammengefasst; tatsächlich wurden diese Gesetze schrittweise 1789–1792 beschlossen: Kirchengüter 1789, Priestereid 1790, Zivilehe 1792)</span></li>
+<li><b>Wirtschaftsgesetze (Wirtschaftsliberalismus):</b> Das wohlhabende Bürgertum setzt sich durch: <b>Zünfte und Zunftzwang abgeschafft</b>, <b>Berufs- und Gewerbefreiheit</b>. Die Krise soll durch das freie Spiel von <b>Angebot und Nachfrage</b> gelöst werden. Folge: Lage der <b>Lohnarbeiter</b> verschlechtert sich; als sie streiken, <b>verbietet</b> die Nationalversammlung Zusammenschlüsse und Streiks.</li>
+<li><b>Wirtschaftsliberalismus</b> = freie Marktwirtschaft, ein sich selbst regulierendes System, gesteuert durch die <b>„unsichtbare Hand“</b> des Marktes (Adam Smith); der Staat greift nicht ein.</li>
+</ul>
+<h3 data-s="Verfassung 1791">6. Konstitutionelle Monarchie (Verfassung 1791)</h3>
+<ul>
+<li><b>„Flucht nach Varennes“</b> (Juni 1791): Die Königsfamilie versucht ins Ausland zu fliehen, wird gefangen genommen. Der König gilt seither als <b>Verräter</b>. Trotzdem schwört er den Eid auf die Verfassung.</li>
+<li><b>September 1791</b>: Verfassung → <b>konstitutionelle Monarchie</b>. „Rollenverteilung“: <b><mark>König = Exekutive</mark></b> (ausführende Gewalt); <b>Legislative und Judikative</b> = gewählte Volksvertreter.</li>
+<li><b>Zensuswahlrecht</b> = <mark>Wahlrecht nur für <b>wohlhabende Bürger</b></mark>, nach Besitz und Einkommen.</li>
+<li><b>In der Legislative (erste gewählte Volksvertretung):</b>
+<ul><li><b>Rechts:</b> besitzendes Bürgertum, sieht die Revolution als beendet, für die konstitutionelle Monarchie.</li>
+<li><b>Links:</b> <b>Girondisten</b> (gemäßigte Bürgerliche aus der Provinz, Wortführer aus der Gironde) und <b>Jakobiner</b> (revolutionäre Bürgerliche, meist Intellektuelle, benannt nach dem Kloster St. Jakob in Paris; <b>Robespierre, Danton, Marat</b>), offen für die Republik.</li></ul></li>
+<li class="small">Daher kommen unsere Begriffe „rechts“ und „links“ in der Politik.</li>
+</ul>
+<h3 data-s="Krieg & Republik">7. Krieg und Republik (1792)</h3>
+<ul>
+<li>Europas Herrscher fürchten das Übergreifen der Revolution, die Untertanen begrüßen die Ideen. Eine österreichisch-preußische Erklärung unterstützt den König.</li>
+<li><b>1792: Frankreich erklärt Österreich den Krieg</b> <span class="zi">20. April 1792</span>. <b>Koalitionskriege</b>: Österreich mit Preußen, nach der Hinrichtung des Königs auch England, Holland, Spanien, Sardinien(-Piemont), Neapel und das Reich.</li>
+<li><b>Motive</b> von Österreich, Preußen, Russland, Spanien, Piemont: <span class="zi">Angst, dass die Revolution auf ihre Länder übergreift; Wiederherstellung der Macht des Königs (Marie Antoinette war eine Habsburgerin, Tante des Kaisers Franz II.); Hoffnung auf Gebietsgewinne</span></li>
+<li><b>Marseillaise</b>: Freiheitslied, in Straßburg entstanden, im Juli 1792 von Freiwilligen aus Marseille beim Einzug in Paris gesungen. Heute <b>Nationalhymne</b>.</li>
+<li><b>20. Juni 1792</b>: Das Volk zwingt dem König die <b>Freiheitsmütze</b> auf.</li>
+<li>Der <b>Herzog von Braunschweig</b> droht dem Pariser Volk mit blutiger Rache, falls dem König etwas zustößt. Der König erscheint endgültig als Verräter.</li>
+<li><b>August 1792: Sturm auf die Tuilerien</b> (Königspalast in Paris) <span class="zi">10. August</span>, Gefangennahme der königlichen Familie. Massenverhaftungen und Hinrichtungen von Adeligen und Priestern.</li>
+<li><b>Nationalkonvent</b>: erstmals <b>allgemeines und gleiches Wahlrecht</b>: <b><mark>alle Männer über 21</mark></b>.</li>
+<li><b>21. September 1792</b>: Abschaffung der Monarchie, <b><mark>Ausrufung der Republik</mark></b>.</li>
+<li>Prozess wegen Landesverrats gegen <b>„Bürger Capet“</b> (Adelstitel abgeschafft): mit einer Stimme Mehrheit zum Tod verurteilt.</li>
+<li><b><mark>21.1.1793: Hinrichtung Ludwigs XVI.</mark></b> auf der Place de la Révolution (heute <b>Place de la Concorde</b>) <span class="note">(im Arbeitsblatt: „1792 Hinrichtung von Ludwig XVI“)</span>. <b>1793</b> <span class="zi">16. Oktober</span>: Hinrichtung von <b>Marie Antoinette</b>, Tochter Maria Theresias.</li>
+<li><b>Republikanische Verfassung 1793</b>: Volkssouveränität, Gleichheit, bürgerliche Freiheitsrechte, <b>Recht auf Arbeit</b>; trat aber <b>nie in Kraft</b>.</li>
+</ul>
+<h3 data-s="Schreckensherrschaft">8. Die Schreckensherrschaft der Jakobiner (1793–1794)</h3>
+<p><span class="note">(im Arbeitsblatt: „1792–1794 Terrorherrschaft“; in der Präsentation und im Buch: 1793–1794)</span></p>
+<ul>
+<li><b>Jakobiner</b> = radikaler politischer Klub der Revolution (nach dem Kloster St. Jakob). <b>Anführer: <mark>Maximilien de Robespierre</mark></b>.</li>
+<li>Nach der Hinrichtung des Königs: schlechte Wirtschaftslage, Brotmangel, Teuerung, Demonstrationen. Ein Aufstand der <b>Sansculotten</b> führt dazu, dass die <b>Girondisten</b> (für freie Wirtschaft) aus dem Konvent <b>vertrieben</b> werden. Die radikalen Jakobiner erhalten die <b>Mehrheit</b>.</li>
+<li><b>Wohlfahrtsausschuss</b> = oberstes Regierungsorgan, Vorsitzender <b>Robespierre</b> (1793).</li>
+<li><b>Wer wird verfolgt?</b> Alle „<b>Feinde der Republik</b>“: Adelige, Priester, Girondisten, auch frühere Weggefährten wie <b>Georges Danton</b>, weil er einen Ausgleich wollte. Oft genügte ein <b>bloßer Verdacht</b> für das Todesurteil.</li>
+<li><b>Opferzahlen:</b> in einem Jahr etwa <b><mark>40.000 Menschen hingerichtet</mark></b>. Die <b>Guillotine</b> (Fallbeil) wird zum Symbol der Schreckensherrschaft.</li>
+<li><b>Revolutionsgericht</b> (Bildanalyse): <span class="zi">kein unabhängiger Richter, kein Verteidiger, keine Unschuldsvermutung, kein Recht auf Beweise, Urteil steht vorher fest, Zuschauer drohen</span></li>
+<li><b>Militärische Rettung:</b> Der Wohlfahrtsausschuss führt die <b>allgemeine Wehrpflicht</b> ein (<b>levée en masse</b> = Massenrekrutierung). Die Revolutionsarmee schlägt die Feinde zurück und marschiert in Nachbarländer ein.</li>
+<li><b>Im Inneren:</b> Wirtschaftskrise nicht bewältigt; trotz <b>Höchstpreisen</b> für Nahrungsmittel weitere Preissteigerungen. Trotz Hinrichtung von „Wirtschaftsverbrechern“ verlieren die Jakobiner die Unterstützung der Unterschichten.</li>
+<li><b>Ende:</b> Robespierre verstärkt den Terror weiter → bürgerliche Gegner und eigene Gefährten verhaften ihn. <b><mark>Hinrichtung Robespierres am 28.7.1794</mark></b>. Grund: Niemand war mehr sicher, der Terror richtete sich auch gegen die eigenen Leute.</li>
+</ul>
+<h3 data-s="Direktorium">9. Das Direktorium (1795–1799) und das Ende der Revolution</h3>
+<ul>
+<li>Das <b>Besitzbürgertum</b> (Großbürgertum) gewinnt wieder die Oberhand: <b>neue Verfassung</b> (die dritte in vier Jahren), <b>Wiedereinführung des Zensuswahlrechts</b>.</li>
+<li>Regierung durch <b><mark>5 Direktoren</mark></b> = <b>Direktorium</b>. Vertritt vor allem die Interessen des <b>Großbürgertums</b>; <b>Korruption</b>. Aufstände von Royalisten und Pariser Bevölkerung.</li>
+<li><span class="note">(in der Präsentation: „1794–1799 Direktorium“; nach Robespierres Sturz 1794 folgte eine Übergangszeit, das Direktorium selbst regierte ab 1795)</span></li>
+<li>Nach 4 Jahren <b>militärischer Staatsstreich</b> des Armeegenerals <b>Napoleon</b> (<b>9.11.1799</b>). Damit ist die Revolution nach <b>zehn Jahren</b> endgültig beendet.</li>
+</ul>
+<h3 data-s="3 Phasen">10. Die drei Phasen der Revolution</h3>
+<div class="scroll"><table><tr><th>Phase</th><th>Zeit</th><th>Titel</th><th>Wichtig</th></tr>
+<tr><td>1. Phase</td><td>1789–1792</td><td>Gemäßigte Phase: Bürgerliche Revolution und konstitutionelle Monarchie</td><td>Nationalversammlung, Bastille, Menschenrechte, Abschaffung der Privilegien, Verfassung 1791, Krieg gegen Österreich</td></tr>
+<tr><td>2. Phase</td><td>1792/93–1794</td><td>Radikale Phase: Republik und Schreckensherrschaft</td><td>Republik, Hinrichtung des Königs, Wohlfahrtsausschuss, allgemeiner Wehrdienst, Terrorgesetze, Robespierre</td></tr>
+<tr><td>3. Phase</td><td>1795–1799</td><td>Bürgerliche Phase: Direktorium</td><td>Zensuswahlrecht, 5 Direktoren, Korruption, Staatsstreich Napoleons (Konsulatsverfassung 1799)</td></tr></table></div>
+<p class="small">Die Phasentitel stammen aus der Aufgabe „Gib jeder Phase einen Titel“; die Grafik im Buch zeigt die Revolution als Kurve, die bis 1794 radikaler wird und dann abfällt.</p>
+<h3 data-s="Symbole">11. Symbole und Alltag der Revolution</h3>
+<table><tr><th>Symbol</th><th>Bedeutung</th></tr>
+<tr><td>Motto</td><td><b><mark>„Liberté, Égalité, Fraternité“</mark></b> (Freiheit, Gleichheit, Brüderlichkeit), steht heute auf der französischen 2-Euro-Münze</td></tr>
+<tr><td>Freiheitsbaum</td><td>Bürger versammelten sich „zufällig“ im Schatten von Bäumen im Ortszentrum (eingeschränkte Versammlungsfreiheit); in der Revolution überall als Symbol der Freiheit gepflanzt</td></tr>
+<tr><td>Kampflied</td><td><b>„Marseillaise“</b>, seither französische Nationalhymne</td></tr>
+<tr><td>Feiertag</td><td><b>14. Juli</b> (1789 Erstürmung der Bastille), heute Nationalfeiertag</td></tr>
+<tr><td>Flagge</td><td><b>Trikolore</b>: Rot und Blau (Wappen von Paris) + Weiß (Farbe des Königs)</td></tr>
+<tr><td>Kleidung</td><td><b>Jakobinermütze</b> (rote Mütze) und <b>Kokarde</b>; <b>Sansculottes</b>: Revolutionäre tragen lange Hosen statt der Kniebundhosen (culottes) des Adels</td></tr>
+<tr><td>Anrede</td><td>„Bürger“ statt „Herr“</td></tr></table>
+<ul>
+<li><b>Pileus</b>: Filzkappe, die in der römischen Antike <b>Sklaven bei ihrer Freilassung</b> als Zeichen der Freiheit bekamen (auf der Brutusmünze: Befreiung von Cäsar). <b>Verwechslung:</b> Die Revolutionäre hielten irrtümlich die antike <b>phrygische Mütze</b> für dieses Freiheitszeichen.</li>
+<li>Die Rote Mütze erscheint später in den <b>Wappen Kubas und Argentiniens</b>.</li>
+<li><b>„Frisur zur Unabhängigkeit oder der Triumph der Freiheit“</b>: Anlass war ein französischer Seesieg 1778 gegen ein britisches Schiff im amerikanischen Unabhängigkeitskrieg. Widerspruch: Die Frisur feiert „Freiheit“, wird aber von <b>Marie Antoinette und Hofdamen</b> getragen, die für Luxus und Privilegien stehen. Man machte sich in Schmähschriften („libelles“) darüber lustig.</li>
+<li><b>Religion:</b> Der christliche Kalender wird abgeschafft, statt Gott wird der <b>„Kult des höchsten Wesens“</b> gefeiert; viele Kirchen werden zu <b>„Tempeln der Vernunft“</b>.</li>
+<li>Die alte Provinzeinteilung wird abgeschafft. Große <b>Feste</b> feiern die Revolution.</li>
+</ul>
+<h3 data-s="Kalender & Meter">12. Revolutionskalender und Dezimalsystem</h3>
+<ul>
+<li>Neue Jahreszählung ab <b>22. September 1792</b> (Republik). Statt Wochen: <b>Dekaden (10 Tage)</b>: Primidi, Duodi, Tridi, Quartidi, Quintidi, Sextidi, Septidi, Octidi, Nonidi, Decadi.</li>
+<li>Jeder Monat hat <b>30 Tage</b>, benannt nach Natur und Tätigkeiten; dazu <b>6 Übergangstage</b> am Jahresende (<b>Sansculottiden</b>, Feiertage). Sinn: Bruch mit Kirche und Königtum (unsere Monate sind nach römischen Göttern, Kaisern und Zahlen benannt), Vernunft und Natur statt Religion.</li>
+<li><b>Dezimaluhr</b>: auch die Zeit sollte dezimal sein <span class="zi">10 Stunden pro Tag, 100 Minuten pro Stunde</span>.</li>
+<li><b>1806</b> führte Napoleon den <b>gregorianischen Kalender</b> wieder ein.</li>
+</ul>
+<div class="scroll"><table><tr><th>Jahreszeit</th><th>Monat</th><th>Bedeutung</th><th>Zeitraum</th></tr>
+<tr><td rowspan="3">Herbst (-aire)</td><td>Vendémiaire</td><td>lat. vindemia „Weinlese“</td><td>22.9.–21.10.</td></tr>
+<tr><td>Brumaire</td><td>frz. brume „Nebel“</td><td>22.10.–20.11.</td></tr>
+<tr><td>Frimaire</td><td>frz. frimas „gefrierender Nebel“</td><td>21.11.–20.12.</td></tr>
+<tr><td rowspan="3">Winter (-ôse)</td><td>Nivôse</td><td>lat. nix, nivis „Schnee“</td><td>21.12.–19.1.</td></tr>
+<tr><td>Pluviôse</td><td>lat. pluvia „Regen“</td><td>20.1.–18.2.</td></tr>
+<tr><td>Ventôse</td><td>lat. ventus / frz. vent „Wind“</td><td>19.2.–20.3.</td></tr>
+<tr><td rowspan="3">Frühling (-al)</td><td>Germinal</td><td>lat. germen „Keim, Spross“</td><td>21.3.–19.4.</td></tr>
+<tr><td>Floréal</td><td>lat. flos, floris „Blume“</td><td>20.4.–19.5.</td></tr>
+<tr><td>Prairial</td><td>frz. prairie „Wiese“</td><td>20.5.–18.6.</td></tr>
+<tr><td rowspan="3">Sommer (-idor)</td><td>Messidor</td><td>lat. messis „Ernte“</td><td>19.6.–18.7.</td></tr>
+<tr><td>Thermidor</td><td>griech. thermós „warm“</td><td>19.7.–17.8.</td></tr>
+<tr><td>Fructidor</td><td>lat. fructus „(Feld-)Frucht“</td><td>18.8.–16.9.</td></tr></table></div>
+<h4>Das metrische System</h4>
+<ul>
+<li><b>1793</b> definiert die Nationalversammlung: <b>„1 Meter ist der 10-millionste Teil des Erdquadranten auf dem Meridian von Paris“</b> (Strecke Nordpol–Äquator).</li>
+<li><b>Kilogramm</b> ist vom Meter abgeleitet: <b>Gewicht eines Kubikdezimeters Wasser = 1 kg</b>.</li>
+<li>Durch <b>Napoleon</b> verbreitet, <b>internationaler Standard erst 1875</b>.</li>
+</ul>
+<h3 data-s="Bedeutung">13. Bedeutung der Französischen Revolution</h3>
+<ul>
+<li><b>Ursachen von Revolutionen:</b> tiefe Gegensätze zwischen Herrschenden und Beherrschten; vorbereitet durch geistige Strömungen (Aufklärung), ausgelöst oft durch Wirtschaftskrisen. <b>Ziel:</b> Änderung der gesellschaftlichen und wirtschaftlichen Ordnung.</li>
+<li><b>Revolution vs. Reform:</b> Revolution = <b>Umwälzung</b> (radikal, oft gewaltsam); Reform = dem Alten eine <b>neue Form</b> geben (schrittweise Veränderung).</li>
+<li>Die Revolution beendete den <b>absolutistischen Staat</b> und die <b>feudale Wirtschaftsform</b> und setzte <b>Ideen der Aufklärung</b> um. Statt Gottesgnadentum: <b>Volkssouveränität</b>. Vorrechte von Adel und Kirche beseitigt; Standesunterschiede aufgehoben, aber <b>soziale Unterschiede blieben</b>.</li>
+<li><b>„Bürgerliche Revolution“</b>: vom Bürgertum ausgegangen und getragen; brachte dem Bürgertum politischen Einfluss und die gewünschte Wirtschaftsordnung.</li>
+<li>Sie zeigt auch: Freiheit, Gleichheit, Brüderlichkeit können <b>nicht mit Gewalt und Terror</b> verwirklicht werden.</li>
+<li>Nach 1789 setzt sich in Europa die Ansicht durch, dass an die Stelle der Gewalt des Königs die <b>Herrschaft des Volkes</b> treten soll.</li>
+<li><b>Rechtsstaatlichkeit</b>: eine Forderung der Revolution. Im Rechtsstaat müssen alle Handlungen <b>legal</b> (gesetzeskonform) sein; dazu braucht es eine <b>unabhängige Justiz</b>. Statt Herrschaft durch Machtdemonstration, Willkür und Gewalt gilt die <b>verbindliche Kraft des Rechts</b>. In der österreichischen Verfassung verankert; der <b>Verfassungsgerichtshof</b> prüft Gesetze.</li>
+</ul>
+<h4>Mindmap 1: Ideen der Revolution</h4>
+<p>Freiheit · Gleichheit · Brüderlichkeit · Republik · Nationalismus · Menschenrechte · Metrisches System (ab 1875 international) · Code Civil (bürgerliches Recht)</p>
+`,
+ursachen:[["Ursachen","Staatsschulden (Hof, Heer, Kriege); Steuern nur vom 3. Stand; 3. Stand ohne politische Rechte; Missernten und Hunger; Aufklärung; Vorbild USA"],["Anlass","Einberufung der Generalstände 1789, um neue Steuern zu bewilligen; Streit um Abstimmung nach Köpfen"],["Verlauf","Nationalversammlung 17.6.1789 → Bastille 14.7.1789 → Menschenrechte 26.8.1789 → Verfassung 1791 → Krieg 1792 → Republik 21.9.1792 → Hinrichtung König 21.1.1793 → Terror 1793/94 → Direktorium 1795–1799 → Napoleon 1799"],["Folgen","Ende von Absolutismus und Feudalismus; Menschenrechte; Volkssouveränität; Gleichheit vor dem Gesetz; Nationalismus; metrisches System; Rechtsstaat; aber Terror und Krieg"]],
+personen:[["Person","Ludwig XVI.","König, hingerichtet 21.1.1793"],["Person","Marie Antoinette","Königin, Tochter Maria Theresias, hingerichtet 1793"],["Person","Maximilien de Robespierre","Führer der Jakobiner, Vorsitz Wohlfahrtsausschuss, hingerichtet 28.7.1794"],["Person","Georges Danton","Jakobiner, wollte Ausgleich, hingerichtet"],["Person","Jean-Paul Marat","Jakobiner"],["Person","Rousseau / Montesquieu / Voltaire","Aufklärer: Volkssouveränität / Gewaltenteilung / konstitutionelle Monarchie"],["Datum","5.5.1789","Eröffnung der Generalstände"],["Datum","17.6.1789","3. Stand wird Nationalversammlung"],["Datum","14.7.1789","Sturm auf die Bastille"],["Datum","26.8.1789","Erklärung der Menschen- und Bürgerrechte"],["Datum","Juni 1791","Flucht nach Varennes"],["Datum","Sept. 1791","Verfassung: konstitutionelle Monarchie"],["Datum","1792","Kriegserklärung an Österreich"],["Datum","21.9.1792","Ausrufung der Republik"],["Datum","1793–1794","Schreckensherrschaft der Jakobiner"],["Datum","1795–1799","Direktorium"],["Datum","9.11.1799","Staatsstreich Napoleons"],["Begriff","Zensuswahlrecht","Wahlrecht nach Besitz und Einkommen"],["Begriff","Sansculottes","Revolutionäre aus der Unterschicht in langen Hosen"],["Begriff","Wohlfahrtsausschuss","Regierung unter Robespierre"]],
+merke:["Ursachen: Staatsschulden, Steuern nur vom 3. Stand ohne politische Rechte, Hunger, Aufklärung, Vorbild USA.","1789: Nationalversammlung (17.6.), Bastille (14.7.), Abschaffung des Feudalismus (August), Menschen- und Bürgerrechte (26.8.).","1791 konstitutionelle Monarchie mit Zensuswahlrecht; 1792 Krieg und Republik; 21.1.1793 Hinrichtung des Königs.","1793–1794 Schreckensherrschaft der Jakobiner unter Robespierre (ca. 40.000 Tote); Ende mit seiner Hinrichtung 1794.","1795–1799 Direktorium; 1799 beendet Napoleon die Revolution. Motto: Freiheit, Gleichheit, Brüderlichkeit."],
+fragen:[
+{op:"nennen",q:"Nenne die Ursachen der Französischen Revolution.",a:"Hohe Staatsschulden (Hofleben, stehendes Heer, Kriegsschulden aus 7-jährigem Krieg und amerikanischem Unabhängigkeitskrieg); hohe Steuern nur für den 3. Stand, der keine politischen Rechte hatte; Missernten und Hungersnot; Ideen der Aufklärung (Rousseau, Montesquieu); Vorbild USA."},
+{op:"beschreiben",q:"Beschreibe, wie aus den Generalständen die Nationalversammlung wurde.",a:"Ludwig XVI. berief 1789 die Generalstände ein, um neue Steuern zu bewilligen. Der 3. Stand hatte 600 Vertreter, forderte Abstimmung nach Köpfen statt nach Ständen. Als die oberen Stände ablehnten, erklärte sich der 3. Stand am 17.6.1789 zur Nationalversammlung und schwor im Ballhaus, bis zu einer Verfassung zusammenzubleiben."},
+{op:"erklären",q:"Erkläre den Begriff Zensuswahlrecht.",a:"Wahlrecht, das vom Besitz und Einkommen (Steuerleistung) abhängt. Nur wohlhabende Bürger durften wählen (Verfassung 1791, wieder unter dem Direktorium)."},
+{op:"erklären",q:"Erkläre, warum es zur Schreckensherrschaft kam und warum sie endete.",a:"Ursachen: Krieg gegen äußere Feinde, Aufstände im Inneren, Wirtschaftskrise und Hunger; die radikalen Jakobiner verdrängten die Girondisten. Der Wohlfahrtsausschuss unter Robespierre verfolgte alle „Feinde der Republik“ (ca. 40.000 Hinrichtungen). Ende: Der Terror traf auch eigene Weggefährten (Danton), die Wirtschaftskrise blieb; Gegner verhafteten Robespierre und richteten ihn 1794 hin."},
+{op:"vergleichen",q:"Vergleiche die Verfassung von 1791 mit der Verfassung von 1793.",a:"1791: konstitutionelle Monarchie, König hat Exekutive, Zensuswahlrecht (nur Reiche). 1793: Republik, Volkssouveränität, Gleichheit, Recht auf Arbeit, Wahlrecht für alle Männer über 21 (wie beim Konvent); trat aber nie in Kraft."},
+{op:"analysieren",q:"Analysiere die Karikatur mit dem Bauern, der Adel und Kirche trägt.",a:"Dargestellt: ein alter, gebückter Bauer trägt einen Geistlichen und einen Adeligen auf dem Rücken. Aussage: Der 3. Stand trägt alle Lasten (Steuern), die oberen Stände leben auf seine Kosten. Zielpublikum: das Volk; Absicht: Kritik an der Ständeordnung, Wunsch nach Veränderung („Hoffen wir, dass das Spiel bald ein Ende nimmt“)."},
+{op:"erklären",q:"Erkläre die Symbole der Französischen Revolution.",a:"Motto Liberté, Égalité, Fraternité; Marseillaise (Nationalhymne); 14. Juli (Bastille, Nationalfeiertag); Trikolore (Rot/Blau von Paris, Weiß vom König); Jakobinermütze (rote Freiheitsmütze, nach antikem Vorbild) und Kokarde; Freiheitsbaum; Sansculottes."},
+{op:"beurteilen",q:"Beurteile die Französische Revolution: Fortschritt oder Katastrophe?",a:"Fortschritt: Ende des Absolutismus und der Privilegien, Menschenrechte, Volkssouveränität, Gleichheit vor dem Gesetz, Rechtsstaat, metrisches System; Vorbild für Europa. Schattenseiten: Terror (ca. 40.000 Tote), Krieg, keine soziale Gleichheit, Ende in einer Diktatur (Napoleon). Fazit: Die Ideen waren ein großer Fortschritt, aber sie zeigen, dass Freiheit nicht mit Gewalt erzwungen werden kann."}],
+karten:[["Wer gehörte zum 3. Stand?","Bürger und Bauern, 98 % der Bevölkerung"],["Wann wurde die Bastille gestürmt?","14. Juli 1789 (heute Nationalfeiertag)"],["Was geschah am 26.8.1789?","Erklärung der Menschen- und Bürgerrechte"],["Was ist der Ballhausschwur?","Schwur der Nationalversammlung, nicht auseinanderzugehen, bis Frankreich eine Verfassung hat"],["Was war die Flucht nach Varennes?","Fluchtversuch der Königsfamilie im Juni 1791; König gilt als Verräter"],["Welche Staatsform brachte die Verfassung 1791?","Konstitutionelle Monarchie"],["Wann wurde die Republik ausgerufen?","21. September 1792"],["Wann wurde Ludwig XVI. hingerichtet?","21.1.1793"],["Wer führte die Jakobiner?","Maximilien de Robespierre"],["Was war der Wohlfahrtsausschuss?","Regierung der Jakobiner unter Robespierre (1793/94)"],["Wie viele Menschen wurden in der Schreckensherrschaft hingerichtet?","etwa 40.000"],["Was war das Direktorium?","Regierung von 5 Direktoren (1795–1799), Großbürgertum, Korruption"],["Was bedeutet levée en masse?","Massenrekrutierung = allgemeine Wehrpflicht"],["Was ist ein Sansculotte?","Revolutionär in langen Hosen statt Kniebundhosen (culottes) des Adels"],["Woher kommen die Farben der Trikolore?","Rot und Blau: Paris; Weiß: König"],["Wie wurde 1793 der Meter definiert?","10-millionster Teil des Erdquadranten (Nordpol bis Äquator) auf dem Meridian von Paris"],["Was ist eine Dekade im Revolutionskalender?","Eine 10-Tage-Woche"],["Revolution oder Reform?","Revolution = Umwälzung; Reform = dem Alten eine neue Form geben"],["Was ist ein Rechtsstaat?","Staat, in dem alles Handeln gesetzeskonform sein muss; unabhängige Justiz; Recht statt Willkür"]],
+quiz:[
+["Wie viel Prozent der Bevölkerung gehörten zum 3. Stand?",["50 %","75 %","98 %","2 %"],2,"Bürger und Bauern = 98 %. Sie zahlten alle Steuern."],
+["Warum berief Ludwig XVI. 1789 die Generalstände ein?",["Um eine Verfassung zu schreiben","Um neue Steuern bewilligen zu lassen","Um Krieg zu erklären","Um abzudanken"],1,"Der Staat war hoch verschuldet; der König brauchte neue Steuern."],
+["Was geschah am 14. Juli 1789?",["Hinrichtung des Königs","Ausrufung der Republik","Sturm auf die Bastille","Ballhausschwur"],2,"Die Bastille war Symbol des Ancien Régime; heute Nationalfeiertag."],
+["Was ist das Zensuswahlrecht?",["Wahlrecht für alle Männer","Wahlrecht nach Besitz und Einkommen","Wahlrecht für Frauen","Wahlrecht nur für Adelige"],1,"Nur wohlhabende Bürger durften wählen (1791, Direktorium)."],
+["Wer führte die Schreckensherrschaft an?",["Danton","Napoleon","Robespierre","La Fayette"],2,"Robespierre, Vorsitzender des Wohlfahrtsausschusses; 1794 selbst hingerichtet."],
+["Wann wurde Ludwig XVI. hingerichtet?",["14.7.1789","21.9.1792","21.1.1793","28.7.1794"],2,"21.1.1793 (im Arbeitsblatt steht irrtümlich 1792)."],
+["Wer durfte den Nationalkonvent 1792 wählen?",["Nur reiche Bürger","Alle Männer über 21","Alle Erwachsenen","Nur Adelige"],1,"Erstmals allgemeines und gleiches Wahlrecht für Männer."],
+["Woher stammen die Farben der Trikolore?",["Rot und Blau aus dem Wappen von Paris, Weiß vom König","Aus der US-Flagge","Von Napoleon","Von der Kirche"],0,"Paris + König = Symbol der Einheit 1789."],
+["Wie viele Direktoren hatte das Direktorium?",["3","5","7","12"],1,"5 Direktoren, Interessen des Großbürgertums."],
+["Welcher Aufklärer forderte die Gewaltenteilung?",["Rousseau","Montesquieu","Voltaire","Adam Smith"],1,"Montesquieu: Gewaltenteilung. Rousseau: Volkssouveränität."]]
+});
+
+TOPICS.push({
+id:"nap", tab:"Napoleon", color:"#6a1b9a",
+title:"Napoleon Bonaparte: Aufstieg und Fall (1799–1815)",
+ueberblick:"Der General Napoleon beendet 1799 durch einen Staatsstreich die Revolution, wird 1804 Kaiser und beherrscht nach Siegen wie Austerlitz (1805) fast ganz Europa. Er verbreitet den Code Civil und Ideen der Revolution, beutet aber die eroberten Länder aus und weckt so den Nationalismus. Nach der Niederlage in Russland (1812), bei Leipzig (1813) und Waterloo (1815) wird er verbannt.",
+kern:"Napoleon ist Revolutionär und Reaktionär zugleich: Er beendet die Revolution und regiert als Kaiser, verbreitet aber ihre Ideen (Code Civil, Gleichheit vor dem Gesetz) in ganz Europa. Seine Eroberungen lösen den modernen Nationalismus aus.",
+body:`
+<blockquote class="card"><b>Napoleon am 15. Dezember 1799:</b> „[…] Bürger, die Revolution ist den Grundsätzen, von denen sie ihren Ausgang nahm, fest verbunden; sie ist beendet.“<br><b>Motto:</b> „Nur wer mit dem Stiefel regiert, behält die Macht.“</blockquote>
+<h3 data-s="Aufstieg">1. Der Aufstieg Napoleons</h3>
+<div class="scroll"><table><tr><th>Jahr</th><th>Ereignis</th></tr>
+<tr><td>1769</td><td>Geboren auf <b>Korsika</b> als Sohn eines italienischen Rechtsanwalts</td></tr>
+<tr><td>1779–1785</td><td>Militärschule in <b>Brienne und Paris</b></td></tr>
+<tr><td>1793</td><td>Beförderung zum <b>General mit 24 Jahren</b></td></tr>
+<tr><td>1794</td><td>Freundschaft mit <b>Robespierre</b> → nach dessen Sturz kurzzeitige Inhaftierung</td></tr>
+<tr><td>5. Okt. 1795</td><td>Niederschlagung eines royalistischen Aufstands → Oberbefehl im Krieg gegen Österreich</td></tr>
+<tr><td>1796/97</td><td>Siegreicher <b>Italienfeldzug</b> → danach <b>Ägyptenfeldzug</b> <span class="zi">1798–1799</span></td></tr>
+<tr><td>1799</td><td><b><mark>Staatsstreich</mark></b> (9.11.1799) → <b><mark>Erster Konsul</mark></b> (Konsulatsverfassung)</td></tr>
+<tr><td>1804</td><td><b><mark>Krönung zum Kaiser</mark></b> der Franzosen (<b>2.12.1804</b>) <span class="zi">Er setzte sich die Krone in Notre-Dame selbst auf; der Papst war nur anwesend.</span></td></tr>
+<tr><td>1805</td><td>Napoleon krönt sich zum <b>König von Italien</b></td></tr></table></div>
+<h3 data-s="Revolutionär & Reaktionär">2. Napoleon: Revolutionär und Reaktionär</h3>
+<table><tr><th>Revolutionär (bewahrt Ideen der Revolution)</th><th>Reaktionär (gegen die Revolution)</th></tr>
+<tr><td><b>Plebiszite</b> (= Volksabstimmungen) bei wichtigen Entscheidungen (als 1. Konsul 1799–1804)<br><b>Code Civil</b> <span class="zi">1804</span>: <b><mark>gleiches Recht für alle</mark></b>, keine Vorrechte für den Adel → Grundlage des modernen europäischen Zivilrechts<br>Verbreitung des metrischen Systems</td><td><b>Beendet 1799 die Revolution</b>, erklärt sich zum 1. Konsul<br><b>Kaiserkrönung 1804</b>: Ende der Volksherrschaft, Wiedereinführung der Monarchie<br><b>Konkordat</b> <span class="zi">1801</span>: Vertrag mit der Kirche, bringt ihm deren Unterstützung<br>1806 Rückkehr zum gregorianischen Kalender</td></tr></table>
+<p><b>Propaganda:</b> Das Gemälde „Napoleon am St. Bernhard“ von Jacques-Louis David (kaiserlicher Hofmaler) zeigt ihn als Helden auf einem sich aufbäumenden Pferd; auf dem Felsen stehen die Namen von Hannibal und Karl dem Großen. In Wirklichkeit ritt er auf einem <b>Maultier</b> und trug einen gewöhnlichen Waffenrock.</p>
+<h3 data-s="Gipfel der Macht">3. Napoleon am Gipfel der Macht</h3>
+<p><b>Export der Revolution oder Hegemonialstreben?</b> In 15 Jahren Herrschaft hatte Frankreich nur ein Jahr Frieden. Die Kriege dienten vor allem der <b>Hegemonialpolitik</b> (Vorherrschaft), exportierten aber auch das französische Staatsmodell, die bürgerliche Gleichheit und den Code Napoléon. Ziel: <b>England unterwerfen und den Kontinent beherrschen</b>.</p>
+<ul>
+<li><b>1804/1805:</b> Geplanter Angriff auf England scheitert an der starken <b>britischen Flotte</b> (Überquerung des Ärmelkanals unmöglich). <b>1805: vernichtende Niederlage zur See bei Trafalgar</b> <span class="zi">gegen den britischen Admiral Nelson</span>.</li>
+<li><b>Austerlitz (1805)</b> <span class="zi">2. Dezember</span>: Sieg über Österreich und Russland („<b><mark>Dreikaiserschlacht</mark></b>“). Wien wird besetzt.
+<ul><li>→ <b>Frieden von Pressburg</b> mit Österreich: <b>Tirol</b> (und Vorarlberg) an <b>Bayern</b>, Venetien und Dalmatien an Frankreich; als Ausgleich bekommt Österreich <b>Salzburg</b>.</li>
+<li>→ Folge in Tirol: <b>Tiroler Freiheitskampf unter Andreas Hofer</b> (1809).</li></ul></li>
+<li><b>Jena und Auerstedt (1806)</b>: vernichtender Sieg über <b>Preußen</b> (und Sachsen). Im <b>Frieden von Tilsit</b> <span class="zi">1807</span> verliert Preußen <b>mehr als die Hälfte</b> seines Gebietes. Diese Länder werden <b>Satellitenstaaten</b>.</li>
+<li><b>Rheinbund (1806)</b>: Bund von <b>16 deutschen Fürsten/Staaten</b>, die mit Napoleon verbündet sind. Bayern und Württemberg werden Königreiche.
+<ul><li>→ Folge: <b><mark>1806 Auflösung des „Heiligen Römischen Reiches Deutscher Nation“</mark></b>: Franz II. legt die Kaiserkrone nieder <span class="zi">Er blieb als Franz I. Kaiser von Österreich (seit 1804).</span></li></ul></li>
+</ul>
+<h3 data-s="Kontinentalsperre">4. Wirtschaftskrieg gegen England: Kontinentalsperre (1806–1814)</h3>
+<ul>
+<li>Da Napoleon England militärisch nicht besiegen konnte, wollte er es <b>wirtschaftlich ruinieren</b>.</li>
+<li><b><mark>1806 „Kontinentalsperre“</mark></b>: Verbot jedes Handels mit England; alle abhängigen Staaten müssen mitmachen. <span class="note">(in der Präsentation Tippfehler „1806–18014“, richtig: 1806–1814)</span></li>
+<li>Zur Durchsetzung: <b>Spanien und Portugal besetzt</b>, der <b>Papst gefangen genommen</b>, der Kirchenstaat aufgeteilt.</li>
+<li>Folgen für England zunächst hart (Arbeitslosigkeit, Absatzkrisen, kein Getreide aus Russland und Preußen), aber England <b>überstand die Krise</b> und fand neue Märkte in Übersee. Der Wirtschaftskrieg war <b>gescheitert</b>.</li>
+</ul>
+<h3 data-s="Völker wehren sich">5. Der Abstieg: Die Völker wehren sich</h3>
+<ul>
+<li>Die rücksichtslose Politik und die harte <b>Auspressung</b> der eroberten Länder wecken <b>(nationale) Gegenkräfte</b>. Erstmals seit langem wird die Bevölkerung selbst aktiv. Einnahmen Napoleons aus besetzten Ländern z.B.: 4 Mio. pro Jahr von Spanien, 30 Mio. von Italien; von Österreich 1805 118 Mio. verlangt (mind. 75 Mio. erhalten), 1809 250 Mio. verlangt (164 Mio. bezahlt). <b>„Der Krieg ernährt den Krieg“</b>: Die Armee lebte auf Kosten der Besiegten. Am meisten betroffen: die <b>Bevölkerung</b> der besetzten Länder.</li>
+<li><b>1808/09: Volksaufstände in Spanien und Österreich</b>.</li>
+<li><b>1809:</b> Österreich erklärt Frankreich erneut den Krieg. Bei <b>Aspern</b> schlägt <b>Erzherzog Karl</b> Napoleon zum <b><mark>ersten Mal</mark></b>. Wichtig: Die <b><mark>Legende von Napoleons Unbesiegbarkeit</mark></b> ist zerstört. Wenige Wochen später siegt Napoleon aber bei <b>Deutsch-Wagram</b>.</li>
+<li><b>Frieden von Schönbrunn (1809)</b>: Österreich verliert Salzburg und das Innviertel an Bayern; Dalmatien, Istrien, Kroatien, Osttirol und Teile Kärntens werden zu einem französischen Gebiet zusammengefasst <span class="note">(im Buch: „Königreich Dalmatien“; historisch hießen sie „Illyrische Provinzen“)</span>.</li>
+<li><b>Heirat mit Marie Louise</b> <span class="zi">1810</span>, Tochter von Kaiser Franz I. (von seiner ersten Frau Joséphine ließ er sich scheiden). Ziel: auf eine Stufe mit den alten Fürstenhäusern kommen.</li>
+<li><b>Andreas Hofer</b>: Tiroler Bauer und Wirt. 1809 vertreibt ein Bauernaufgebot unter seiner Führung die bayrische Besatzung; in <b>drei Schlachten am Berg Isel</b> bei Innsbruck werden bayrische und französische Truppen besiegt. Nach dem Frieden von Schönbrunn führt er, <b>von Wien allein gelassen</b>, einen vergeblichen Kleinkrieg weiter. Von einem Landsmann <b>verraten</b>, wird er in <b>Mantua</b> standrechtlich <b>erschossen</b> <span class="zi">1810</span>. <span class="zi">Heute Tiroler Nationalheld.</span></li>
+</ul>
+<h3 data-s="Russland 1812">6. Napoleons Debakel in Russland (1812)</h3>
+<ul>
+<li>Zar <b>Alexander I.</b> nimmt wieder Handel mit England auf (Getreide, Holz) → bricht die Kontinentalsperre.</li>
+<li>Napoleon stellt das bisher <b>größte Heer der Geschichte</b> auf: die <b>Grande Armée</b>, über <b>600.000 Mann</b>, nur etwa ein Drittel Franzosen; starke Kontingente aus <b>Österreich, Preußen und Sachsen</b>.</li>
+<li>Ende Juni 1812 Einmarsch; verlustreiche Siege, aber Russland nicht besiegt. Napoleon nimmt <b>Moskau</b> ein, doch die Stadt ist fast leer, am nächsten Tag zerstört ein <b>Brand</b> weite Teile.</li>
+<li>Der russische Feldherr <b>Kutusow</b> wendet die Taktik der <b><mark>„verbrannten Erde“</mark></b> an → Versorgungsprobleme; dazu der <b>russische Winter</b>.</li>
+<li><b>Ende Oktober 1812: Rückzug</b>. <span class="zi">Auf dem Rückzug durch Kälte, Hunger und russische Angriffe (z.B. am Fluss Beresina) geht die Grande Armée fast vollständig zugrunde; nur einige Zehntausend kehren zurück.</span></li>
+</ul>
+<h3 data-s="Das Ende">7. Das Ende (1813–1815)</h3>
+<ul>
+<li><b>1813 Befreiungskriege</b>: <span class="zi">Preußen, Russland, Österreich und Schweden verbünden sich gegen Napoleon.</span></li>
+<li><b><mark>1813: Niederlage in der „Völkerschlacht“ bei Leipzig</mark></b> <span class="zi">16.–19. Oktober 1813</span>.</li>
+<li><span class="zi">1814 erobern die Verbündeten Paris; Napoleon dankt im April 1814 ab.</span> → <b>Verbannung nach Elba</b> (Insel im Mittelmeer).</li>
+<li><span class="zi">1815 kehrt er zurück und regiert noch einmal etwa 100 Tage („Herrschaft der Hundert Tage“), während der Wiener Kongress tagt.</span></li>
+<li><b><mark>1815: Endgültige Niederlage bei Waterloo</mark></b> <span class="zi">18. Juni 1815, gegen die Briten unter Wellington und die Preußen unter Blücher</span> → <b>Verbannung nach St. Helena</b> (Insel im Südatlantik) <span class="zi">dort gestorben 1821</span>.</li>
+</ul>
+<h3 data-s="Nachwirkungen">8. Nachwirkungen von Napoleons Herrschaft (Mindmap 2)</h3>
+<ul>
+<li><b>Code Civil</b> (bürgerliches Recht, Gleichheit vor dem Gesetz)</li>
+<li><b>Beendet die Revolution</b></li>
+<li><b>† Heiliges Römisches Reich 1806</b></li>
+<li><b><mark>Beginn des modernen Nationalismus</mark></b></li>
+<li><b>Idee: Italien als eigener Staat</b></li>
+<li>Verbreitung des <b>metrischen Systems</b></li>
+<li>Die <b>Ideen der Revolution</b> (Freiheit, Gleichheit, Brüderlichkeit, Menschenrechte, Republik, Nationalismus) lassen sich <b>nicht mehr aus den Köpfen</b> der Menschen entfernen.</li>
+</ul>
+<h4>Warum trug die Eroberungspolitik zum Nationalismus bei?</h4>
+<p>Die besetzten Völker litten unter Ausbeutung, Steuern und Soldatenaushebungen. Gegen den gemeinsamen fremden Feind entstand ein <b>„Wir-Gefühl“</b> (z.B. in Spanien, Tirol, Preußen). Gleichzeitig brachte Napoleon die französische Idee der <b>Nation</b> und der Volksarmee mit.</p>
+<h4>Karte: Europa 1812</h4>
+<p>Arbeitsfrage zur Karte: Rheinbund? Abhängige / Verbündete Napoleons? 1812?</p>
+<div class="zusatz">Frankreich direkt bis an die Nordsee und nach Italien; abhängig bzw. verbündet: <b>Rheinbund</b>, Königreich Italien, Spanien (Bruder Joseph), Herzogtum Warschau, Neapel; 1812 auch Österreich und Preußen gezwungen verbündet. Nicht beherrscht: <b>England</b>, <b>Russland</b> (bis 1812 verbündet), Schweden, Osmanisches Reich.</div>
+`,
+ursachen:[["Aufstieg","Chaos und Korruption im Direktorium; militärische Erfolge (Italien, Ägypten); Staatsstreich 1799"],["Höhepunkt","Kaiser 1804; Austerlitz 1805, Jena/Auerstedt 1806; Rheinbund, Ende des HRR 1806; Kontinentalsperre"],["Abstieg","Trafalgar 1805; Kontinentalsperre scheitert; Volksaufstände 1808/09; Aspern 1809; Russland 1812; Leipzig 1813 → Elba; Waterloo 1815 → St. Helena"],["Folgen","Code Civil, Ende des HRR, Nationalismus, Idee eines italienischen Staates, metrisches System; Wiener Kongress ordnet Europa neu"]],
+personen:[["Person","Napoleon Bonaparte","geb. 1769 Korsika; 1. Konsul 1799, Kaiser 1804"],["Person","Erzherzog Karl","besiegt Napoleon erstmals bei Aspern 1809"],["Person","Andreas Hofer","Tiroler Freiheitskämpfer 1809, in Mantua erschossen"],["Person","Marie Louise","Tochter Kaiser Franz' I., Frau Napoleons"],["Person","Zar Alexander I.","bricht die Kontinentalsperre"],["Person","Kutusow","russischer Feldherr, „verbrannte Erde“"],["Person","Franz II./I.","legt 1806 die Kaiserkrone des HRR nieder"],["Datum","9.11.1799","Staatsstreich, 1. Konsul"],["Datum","2.12.1804","Kaiserkrönung"],["Datum","1805","Trafalgar (Niederlage) / Austerlitz (Sieg) / Frieden von Pressburg"],["Datum","1806","Jena und Auerstedt; Rheinbund; Ende HRR; Kontinentalsperre"],["Datum","1809","Aspern, Wagram, Schönbrunn, Andreas Hofer"],["Datum","1812","Russlandfeldzug"],["Datum","1813","Völkerschlacht bei Leipzig"],["Datum","1815","Waterloo, Verbannung nach St. Helena"],["Begriff","Code Civil","bürgerliches Gesetzbuch, gleiches Recht für alle"],["Begriff","Plebiszit","Volksabstimmung"],["Begriff","Konkordat","Vertrag mit der Kirche"],["Begriff","Kontinentalsperre","Handelsverbot mit England"],["Begriff","Rheinbund","mit Napoleon verbündete deutsche Staaten"]],
+merke:["1799 Staatsstreich → 1. Konsul; 1804 Kaiser: Napoleon beendet die Revolution.","Revolutionär (Code Civil, Plebiszite) und Reaktionär (Kaisertum, Konkordat, Ende der Volksherrschaft).","Austerlitz 1805 (Dreikaiserschlacht) → Pressburg: Tirol an Bayern; 1806 Rheinbund → Ende des Heiligen Römischen Reiches.","Kontinentalsperre 1806 gegen England scheitert; Trafalgar 1805 verloren.","Abstieg: Aspern 1809 (erste Niederlage), Russland 1812, Leipzig 1813 → Elba, Waterloo 1815 → St. Helena. Folge: Nationalismus."],
+fragen:[
+{op:"beschreiben",q:"Beschreibe den Aufstieg Napoleons bis 1804.",a:"Geboren 1769 auf Korsika, Militärschule, mit 24 General (1793). 1795 Niederschlagung eines royalistischen Aufstands, 1796/97 siegreicher Italienfeldzug, Ägyptenfeldzug. 1799 Staatsstreich gegen das Direktorium, Erster Konsul; 1804 Kaiser der Franzosen."},
+{op:"nennen",q:"Nenne Ort, Gegner und Datum von zwei wichtigen Siegen Napoleons.",a:"Austerlitz, 1805, gegen Österreich und Russland (Dreikaiserschlacht). Jena und Auerstedt, 1806, gegen Preußen (und Sachsen)."},
+{op:"erklären",q:"Erkläre, was der Rheinbund war und welche Folgen er hatte.",a:"1806 schlossen sich 16 deutsche Fürsten zu einem mit Napoleon verbündeten Bund zusammen. Bayern und Württemberg wurden Königreiche. Folge: Franz II. legte die Kaiserkrone nieder, das Heilige Römische Reich Deutscher Nation endete 1806."},
+{op:"erklären",q:"Fasse zusammen, warum Napoleon England nicht erobern konnte und was die Kontinentalsperre war.",a:"Die starke britische Flotte machte eine Überquerung des Ärmelkanals unmöglich (Niederlage bei Trafalgar 1805). Deshalb wollte Napoleon England wirtschaftlich ruinieren: Kontinentalsperre 1806 = Handelsverbot mit England für ganz Europa. England fand aber neue Märkte in Übersee, die Sperre scheiterte."},
+{op:"nennen",q:"Wo und von wem wurde Napoleon zum ersten Mal besiegt? Warum war das wichtig?",a:"1809 bei Aspern von Erzherzog Karl. Wichtig: Die Legende von Napoleons Unbesiegbarkeit war zerstört, auch wenn er wenig später bei Wagram siegte."},
+{op:"beurteilen",q:"Beurteile die Heirat Napoleons mit Marie Louise aus Sicht eines Revolutionärs der ersten Stunde.",a:"Ein Revolutionär wäre empört: Die Revolution hatte den König hingerichtet und den Adel abgeschafft, und Marie Louise ist eine Habsburgerin wie Marie Antoinette. Napoleon will sich damit auf eine Stufe mit den alten Fürstenhäusern stellen, also mit genau dem System, das die Revolution bekämpft hat. Das zeigt, dass er die Ideen der Revolution verraten hat."},
+{op:"erklären",q:"Erkläre, warum Napoleons Eroberungspolitik zum Nationalismus beitrug.",a:"Die eroberten Länder wurden ausgebeutet („Der Krieg ernährt den Krieg“). Gegen den fremden Feind entstand ein Wir-Gefühl der Völker (Spanien, Tirol, Preußen). Zugleich brachte Napoleon die französische Idee der Nation mit. So entstand der moderne Nationalismus."},
+{op:"nennen",q:"Fasse die wichtigsten Ereignisse zusammen, die zum Sturz Napoleons führten.",a:"Trafalgar 1805, Scheitern der Kontinentalsperre, Volksaufstände in Spanien und Österreich 1808/09, erste Niederlage Aspern 1809, Katastrophe in Russland 1812, Völkerschlacht bei Leipzig 1813 → Elba; Rückkehr und endgültige Niederlage bei Waterloo 1815 → St. Helena."},
+{op:"vergleichen",q:"Vergleiche: War Napoleon Revolutionär oder Reaktionär?",a:"Revolutionär: Code Civil (gleiches Recht für alle, keine Adelsvorrechte), Plebiszite, Export bürgerlicher Gleichheit, metrisches System. Reaktionär: beendete die Revolution, Kaiserkrönung (Monarchie statt Volksherrschaft), Konkordat mit der Kirche, Heirat mit einer Habsburgerin. Er war beides."}],
+karten:[["Wo und wann wurde Napoleon geboren?","1769 auf Korsika"],["Was geschah 1799?","Staatsstreich, Napoleon wird Erster Konsul; Ende der Revolution"],["Wann wurde Napoleon Kaiser?","2.12.1804"],["Was ist der Code Civil?","Bürgerliches Gesetzbuch: gleiches Recht für alle, keine Adelsvorrechte"],["Was war die Dreikaiserschlacht?","Austerlitz 1805: Napoleon besiegt Österreich und Russland"],["Folge des Friedens von Pressburg für Tirol?","Tirol kommt an Bayern → Tiroler Freiheitskampf"],["Wann endete das Heilige Römische Reich?","1806 (Rheinbund, Franz II. legt Krone nieder)"],["Was war die Kontinentalsperre?","Handelsverbot mit England (1806–1814)"],["Wo verlor Napoleon 1805 zur See?","Trafalgar"],["Wer besiegte Napoleon zum ersten Mal?","Erzherzog Karl bei Aspern 1809"],["Wer war Andreas Hofer?","Tiroler Bauer und Wirt, 1809 Freiheitskampf am Berg Isel, in Mantua erschossen"],["Wie groß war die Grande Armée 1812?","über 600.000 Mann, nur ca. 1/3 Franzosen"],["Was ist „verbrannte Erde“?","Taktik Kutusows: alles zerstören, damit der Feind nichts zur Versorgung findet"],["Wo war die Völkerschlacht?","Leipzig 1813"],["Wohin wurde Napoleon 1814 und 1815 verbannt?","1814 Elba, 1815 St. Helena"],["Wo wurde Napoleon endgültig besiegt?","Waterloo 1815"],["Was ist ein Plebiszit?","Volksabstimmung"],["Was war das Konkordat?","Vertrag Napoleons mit der Kirche"]],
+quiz:[
+["Wie kam Napoleon 1799 an die Macht?",["Durch Wahl","Durch einen Staatsstreich","Durch Erbe","Durch Heirat"],1,"Militärischer Staatsstreich gegen das Direktorium → Erster Konsul."],
+["Gegen wen kämpfte Napoleon in der Dreikaiserschlacht?",["Preußen und Sachsen","England und Spanien","Österreich und Russland","Russland und Schweden"],2,"Austerlitz 1805: Napoleon, Franz II. und Alexander I."],
+["Was war eine Folge der Gründung des Rheinbundes?",["Ende des Heiligen Römischen Reiches","Kaiserkrönung Napoleons","Wiener Kongress","Ende der Kontinentalsperre"],0,"1806 legte Franz II. die Kaiserkrone nieder."],
+["Wo erlitt Napoleon 1805 eine Niederlage zur See?",["Waterloo","Trafalgar","Leipzig","Aspern"],1,"Die britische Flotte siegte bei Trafalgar."],
+["Wer besiegte Napoleon zum ersten Mal an Land?",["Kutusow","Wellington","Erzherzog Karl","Andreas Hofer"],2,"Aspern 1809. Andreas Hofer siegte am Berg Isel über bayrische und französische Truppen, aber nicht über Napoleon selbst."],
+["Was war die Kontinentalsperre?",["Mauer an der Grenze","Handelsverbot mit England","Verbot von Reisen","Zollunion"],1,"Napoleon wollte England wirtschaftlich ruinieren."],
+["Warum scheiterte der Russlandfeldzug?",["Russland hatte eine größere Armee","Verbrannte Erde, Brand Moskaus, Versorgungsmangel und Winter","Napoleon wurde krank","England griff an"],1,"Kutusows Taktik und der russische Winter."],
+["Wohin wurde Napoleon nach Waterloo verbannt?",["Elba","Korsika","St. Helena","Sardinien"],2,"1814 Elba, nach Waterloo 1815 St. Helena."],
+["Welche Maßnahme war revolutionär?",["Kaiserkrönung","Konkordat","Code Civil","Heirat mit Marie Louise"],2,"Gleiches Recht für alle, keine Vorrechte des Adels."]]
+});
+
+TOPICS.push({
+id:"wk", tab:"Wiener Kongress", color:"#2e7d32",
+title:"Der Wiener Kongress (1814/15)",
+ueberblick:"Nach dem Sieg über Napoleon ordnen die Großmächte unter der Leitung Metternichs Europa neu. Leitideen sind Restauration, Legitimität, Solidarität der Fürsten (Heilige Allianz) und Gleichgewicht der Mächte. Statt des Heiligen Römischen Reiches entsteht der Deutsche Bund unter Österreichs Führung; die Ideen der Revolution lassen sich aber nicht mehr verbieten.",
+kern:"Der Wiener Kongress will die Zeit vor der Französischen Revolution wiederherstellen (Restauration) und ein Gleichgewicht der Mächte schaffen. Die Fürsten verbünden sich gegen revolutionäre Ideen.",
+body:`
+<h3 data-s="Aufgabe & Teilnehmer">1. Aufgabe und Teilnehmer</h3>
+<ul>
+<li><b>Aufgabe:</b> <b><mark>Neuordnung Europas</mark></b> nach dem Sieg über Napoleon.</li>
+<li><b>Teilnehmer:</b> <b>Österreich, Preußen, Russland, England, Frankreich</b>.</li>
+<li><b>Leitung:</b> <b><mark>Fürst Metternich</mark></b>, Kanzler von Österreich <span class="zi">(Außenminister, ab 1821 Staatskanzler)</span>.</li>
+<li><span class="zi">Der Kongress tagte von September 1814 bis Juni 1815 in Wien; berühmt sind die vielen Bälle („Der Kongress tanzt“). Während er tagte, kehrte Napoleon für 100 Tage zurück.</span></li>
+</ul>
+<h3 data-s="Leitideen">2. Leitideen</h3>
+<table><tr><th>Leitidee</th><th>Bedeutung</th></tr>
+<tr><td><b>Restauration</b></td><td>Wiederherstellung der politischen und sozialen Zustände <b><mark>vor der Französischen Revolution</mark></b></td></tr>
+<tr><td><b>Legitimität</b></td><td>Die <b><mark>alten, legitimen (berechtigten) Herrscherhäuser</mark></b> sollen wieder eingesetzt werden</td></tr>
+<tr><td><b>Solidarität</b></td><td>der Fürsten gegen revolutionäre Ideen: <b><mark>„Heilige Allianz“</mark></b> zwischen <b>Österreich, Preußen und Russland</b> <span class="zi">1815</span></td></tr>
+<tr><td><b>Gleichgewicht der Mächte</b></td><td>nach britischer Doktrin der Außenpolitik: <b><mark>„Balance of Power“</mark></b>; kein Staat soll Europa beherrschen</td></tr></table>
+<h3 data-s="Ergebnisse">3. Ergebnisse: Europas Neuordnung</h3>
+<ul>
+<li>Nach Waterloo wurde Europa im Zeichen der <b>Restauration</b> geordnet.</li>
+<li><b><mark>Frankreich wurde nicht bestraft</mark></b>, sondern innerhalb der <b>alten Grenzen</b> wieder als <b>Monarchie</b> hergestellt. <span class="note">(im Arbeitsblatt: „Grenzen von vor 1789“; nach dem 2. Pariser Frieden 1815 genau genommen etwa die Grenzen von 1790)</span> Frankreichs Rolle für das Gleichgewicht war fundamental.</li>
+<li>Das <b>Heilige Römische Reich</b> wurde <b>nicht</b> wiederbelebt. An seine Stelle trat der von <b>Österreich angeführte <mark>„Deutsche Bund“</mark></b> (auf der Karte rote Linie).</li>
+<li><span class="zi">Österreich erhielt u.a. Lombardei-Venetien, Salzburg, Tirol und Dalmatien (zurück); Preußen wuchs nach Westen (Rheinland); Russland bekam den Großteil Polens.</span></li>
+<li>Der Sieg der <b>Reaktionäre</b> war nicht von Dauer: Die Ideen der Aufklärung und Revolution ließen sich nicht verbieten, wegsperren oder vergessen machen. Wie ein ansteckendes Virus verbreiteten sie sich von Kopf zu Kopf; einmal „viral gegangen“ können Ideen nicht mehr ausgerottet werden.</li>
+</ul>
+<h4>Welche Ideen der Revolution waren den reaktionären Monarchen besonders verhasst?</h4>
+<p><b>Volkssouveränität</b> und <b>Republik</b> (bedrohen die Herrschaft der Fürsten), <b>Nationalismus</b> (bedroht Vielvölkerstaaten wie Österreich), <b>Gleichheit</b> (gegen Adelsvorrechte), <b>Freiheit / Menschenrechte</b> und die Forderung nach einer <b>Verfassung</b>.</p>
+<h3 data-s="Karten">4. Kartenvergleich</h3>
+<ul>
+<li><b>Europa 1789</b>: Heiliges Römisches Reich (Grenzen des HRR) mit vielen kleinen Staaten.</li>
+<li><b>Napoleons Europa 1812</b>: Frankreich riesig, Rheinbund, Satellitenstaaten.</li>
+<li><b>Europa nach dem Wiener Kongress 1815</b>: Deutscher Bund, Kaisertum Österreich, Königreich Preußen, Russland, Osmanisches Reich; Italien und Deutschland bleiben zersplittert.</li>
+</ul>
+`,
+ursachen:[["Anlass","Sieg über Napoleon (1814/15); Europa muss neu geordnet werden"],["Verlauf","Kongress in Wien 1814/15 unter Metternich; Teilnehmer Ö, Preußen, Russland, England, Frankreich"],["Folgen","Restauration, Deutscher Bund, Heilige Allianz, Gleichgewicht; Unterdrückung revolutionärer Ideen im Vormärz"]],
+personen:[["Person","Fürst Metternich","Leiter des Kongresses, österreichischer Kanzler"],["Datum","1814/15","Wiener Kongress"],["Datum","1815","Heilige Allianz (Ö, Preußen, Russland)"],["Begriff","Restauration","Wiederherstellung der Zustände vor 1789"],["Begriff","Legitimität","alte Herrscherhäuser wieder einsetzen"],["Begriff","Balance of Power","Gleichgewicht der Mächte"],["Begriff","Deutscher Bund","Nachfolger des HRR, von Österreich geführt"],["Begriff","Reaktionär","gegen Fortschritt, will alte Zustände"]],
+merke:["Wiener Kongress 1814/15: Neuordnung Europas nach Napoleon, Leitung Metternich.","Teilnehmer: Österreich, Preußen, Russland, England, Frankreich.","Leitideen: Restauration, Legitimität, Solidarität (Heilige Allianz Ö–Preußen–Russland), Gleichgewicht der Mächte.","Frankreich bleibt Monarchie in alten Grenzen und wird nicht bestraft; statt HRR entsteht der Deutsche Bund unter Österreich.","Die Ideen der Revolution lassen sich trotzdem nicht mehr unterdrücken."],
+fragen:[
+{op:"nennen",q:"Nenne Aufgabe, Teilnehmer und Leiter des Wiener Kongresses.",a:"Aufgabe: Neuordnung Europas nach dem Sieg über Napoleon. Teilnehmer: Österreich, Preußen, Russland, England, Frankreich. Leitung: Fürst Metternich, Kanzler von Österreich."},
+{op:"erklären",q:"Erkläre die Leitideen des Wiener Kongresses.",a:"Restauration: Zustände vor 1789 wiederherstellen. Legitimität: alte Herrscherhäuser wieder einsetzen. Solidarität: Fürsten halten gegen Revolutionen zusammen (Heilige Allianz). Gleichgewicht der Mächte: kein Staat soll Europa beherrschen (Balance of Power)."},
+{op:"erklären",q:"Erkläre, warum Frankreich nicht bestraft wurde.",a:"Für das Gleichgewicht der Mächte brauchte man ein stabiles, starkes Frankreich. Außerdem wurde mit den Bourbonen wieder die legitime Dynastie eingesetzt; ein gedemütigtes Frankreich hätte neue Revolutionen und Kriege riskiert."},
+{op:"beurteilen",q:"Beurteile, ob der Wiener Kongress erfolgreich war.",a:"Erfolg: lange Friedenszeit zwischen den Großmächten durch das Gleichgewicht. Misserfolg: Die Ideen der Revolution (Freiheit, Nationalismus) ließen sich nicht verbieten; Unterdrückung im Vormärz führte 1848 zu Revolutionen in ganz Europa."},
+{op:"vergleichen",q:"Vergleiche die Karten Europas 1789, 1812 und 1815.",a:"1789: HRR mit vielen Kleinstaaten. 1812: Napoleon beherrscht mit Frankreich, Rheinbund und Satellitenstaaten fast ganz Europa. 1815: alte Monarchien wiederhergestellt, Frankreich in alten Grenzen, Deutscher Bund statt HRR, Österreich, Preußen und Russland gestärkt."}],
+karten:[["Wann fand der Wiener Kongress statt?","1814/15"],["Wer leitete den Wiener Kongress?","Fürst Metternich, Kanzler von Österreich"],["Was bedeutet Restauration?","Wiederherstellung der Zustände vor der Französischen Revolution"],["Was bedeutet Legitimität?","Die alten, berechtigten Herrscherhäuser werden wieder eingesetzt"],["Was war die Heilige Allianz?","Bündnis von Österreich, Preußen und Russland gegen revolutionäre Ideen"],["Was ist die Balance of Power?","Gleichgewicht der Mächte (britische Doktrin)"],["Was ersetzte das Heilige Römische Reich?","Der Deutsche Bund unter Führung Österreichs"],["Welche 5 Mächte nahmen teil?","Österreich, Preußen, Russland, England, Frankreich"]],
+quiz:[
+["Wer leitete den Wiener Kongress?",["Napoleon","Metternich","Zar Alexander","Robespierre"],1,"Fürst Metternich, österreichischer Kanzler."],
+["Was bedeutet „Restauration“?",["Neubau von Gebäuden","Wiederherstellung der Zustände vor 1789","Abschaffung der Monarchie","Gründung von Nationalstaaten"],1,"Die alte Ordnung sollte zurückkehren."],
+["Wer bildete die Heilige Allianz?",["England, Frankreich, Spanien","Österreich, Preußen, Russland","Österreich, Frankreich, Italien","Preußen, England, Schweden"],1,"Solidarität der Fürsten gegen Revolutionen."],
+["Was trat an die Stelle des Heiligen Römischen Reiches?",["Der Rheinbund","Das Deutsche Kaiserreich","Der Deutsche Bund","Die Republik Österreich"],2,"Der Deutsche Bund unter Österreichs Führung."],
+["Wie wurde Frankreich behandelt?",["Es wurde aufgeteilt","Es wurde schwer bestraft","Es blieb Monarchie in alten Grenzen","Es wurde Republik"],2,"Für das Gleichgewicht brauchte man Frankreich."],
+["Was bedeutet „Balance of Power“?",["Gleichgewicht der Mächte","Macht dem Volk","Gewaltenteilung","Sieg Englands"],0,"Britische Doktrin: kein Staat soll Europa beherrschen."]]
+});
+
+TOPICS.push({
+id:"vm", tab:"Vormärz", color:"#ef6c00",
+title:"Restauration, Biedermeier, Vormärz (1815–1848)",
+ueberblick:"Nach dem Wiener Kongress unterdrücken die Fürsten, besonders Metternich, die Ideen der Revolution. Die Karlsbader Beschlüsse 1819 bringen Zensur, Überwachung und Verbote; Österreich und Deutschland werden Polizeistaaten. Das Bürgertum zieht sich ins Private zurück (Biedermeier), bis im März 1848 in ganz Europa Revolutionen ausbrechen.",
+kern:"Restauration, Biedermeier und Vormärz beschreiben dieselbe Zeit (1815–1848) aus drei Blickwinkeln: politisch die Unterdrückung, kulturell den Rückzug ins Private, und rückblickend die Zeit vor der Märzrevolution 1848.",
+body:`
+<h3 data-s="Drei Begriffe">1. Die drei Begriffe</h3>
+<div class="flow">
+<div class="box"><b class="t">Restauration</b>Die Großmächte stellen die <b>Grenzen der Zeit vor der Französischen Revolution</b> wieder her und versuchen, die <b><mark>Ideen der Revolution zu unterdrücken</mark></b>.</div>
+<div class="box"><b class="t">Biedermeier</b>Das bürgerliche Leben spielt sich in den <b><mark>eigenen vier Wände</mark>n</b> ab; man legt Wert auf ein <b>schönes Eigenheim</b>. Eigene Kunst, Kultur und Stilepoche 1815–1848 (<b>Biedermeier-Möbel und -Häuser</b>).</div>
+<div class="box"><b class="t">Vormärz</b>Bezeichnung für die Zeit <b>vor dem März 1848</b>. Die Ausrufung der <b>II. Französischen Republik</b> in der <b><mark>Februarrevolution 1848</mark></b> löst im März <b>bürgerliche und nationale Revolutionen in ganz Europa</b> aus.</div>
+</div>
+<h3 data-s="Karlsbader Beschlüsse">2. Die Karlsbader Beschlüsse (1819)</h3>
+<ul>
+<li><b>Auslöser:</b> die <b>Ermordung</b> des russischen Generalkonsuls <b>August von Kotzebue</b> <span class="zi">(auch bekannter Schriftsteller)</span> durch einen deutsch-nationalen <b><mark>Burschenschafter</mark></b> sowie die antijüdischen <b><mark>Hep-Hep-Unruhen</mark></b>.</li>
+<li>Beschlossen vom <b>Deutschen Bund</b> (unter Metternichs Einfluss).</li>
+<li><b>Maßnahmen:</b>
+<ul><li>Verbot der öffentlichen schriftlichen <b>Meinungsfreiheit</b></li>
+<li>Verbot der <b>Burschenschaften</b> (deutsch-national gesinnte Studentenverbindungen)</li>
+<li><b>Überwachung der Universitäten</b></li>
+<li>Schließung der Turnplätze: <b>Turnsperre 1820–1842</b> („Turnvater Jahn“ war deutscher Nationalist)</li>
+<li><b>Zensur</b> der Presse</li>
+<li>Entlassung und <b>Berufsverbot</b> für liberal und national gesinnte Professoren</li></ul></li>
+<li>Folge: In Österreich und Deutschland entstehen regelrechte <b><mark>Polizeistaaten</mark></b> mit <b>Zensur</b> und <b><mark>Spitzelwesen</mark></b> (Spitzel lesen die Post mit und belauschen die Menschen).</li>
+</ul>
+<h3 data-s="Karikatur">3. Karikatur „Der Denker-Club“ (1819)</h3>
+<p><b>Text:</b> „Wichtige Frage, welche in heutiger Sitzung bedacht wird: Wie lange möchte uns das Denken noch erlaubt bleiben?“</p>
+<table><tr><th>Schritt</th><th>Analyse</th></tr>
+<tr><td>Beschreibung</td><td>Männer sitzen um einen Tisch. Manche tragen <b>Maulkörbe</b>, andere haben die Münder verschlossen. An der Wand hängen <b>Regeln</b>, die das Denken und Sprechen einschränken. Die Männer wirken nachdenklich, manche verzweifelt. Sie dürfen nicht reden, nur denken.</td></tr>
+<tr><td>Aussage</td><td>Die Menschen durften im Vormärz <b>nicht frei denken und ihre Meinung äußern</b>. Durch die Karlsbader Beschlüsse 1819 wurden Meinungs- und Pressefreiheit stark eingeschränkt. Die Maulkörbe symbolisieren <b><mark>Zensur und Unterdrückung</mark></b>.</td></tr>
+<tr><td>Intention</td><td>Der Zeichner kritisiert die strengen Regeln und die Unterdrückung der Meinungsfreiheit. Er macht sich darüber lustig, dass man nicht einmal frei diskutieren kann, und will auf die fehlenden Freiheiten aufmerksam machen.</td></tr></table>
+<h3 data-s="Unterdrückte Rechte">4. Unterdrückte Menschenrechte und Freiheiten im Vormärz</h3>
+<p><b>Meinungsfreiheit, Pressefreiheit, Redefreiheit, Versammlungsfreiheit, Vereinigungsfreiheit, Wissenschafts- und Lehrfreiheit, politische Mitbestimmung.</b></p>
+<p>Die politische Strömung, die sich für diese Werte einsetzt, heißt <b>Liberalismus</b> (→ Tab „Liberalismus & Nationalismus“). Ein weiteres unterdrücktes Erbe der Revolution war der <b>Nationalismus</b>.</p>
+`,
+ursachen:[["Ursachen","Wiener Kongress (Restauration); Angst der Fürsten vor Revolution; Mord an Kotzebue, Hep-Hep-Unruhen"],["Verlauf","Karlsbader Beschlüsse 1819 → Zensur, Spitzel, Polizeistaat; Rückzug ins Private (Biedermeier)"],["Folgen","Unzufriedenheit des Bürgertums; Februarrevolution 1848 in Frankreich → Märzrevolutionen 1848 in ganz Europa"]],
+personen:[["Person","Metternich","Symbolfigur der Unterdrückung im Vormärz"],["Person","August von Kotzebue","russischer Generalkonsul, 1819 ermordet"],["Person","„Turnvater“ Jahn","deutscher Nationalist, Turnbewegung"],["Datum","1815–1848","Restauration / Biedermeier / Vormärz"],["Datum","1819","Karlsbader Beschlüsse"],["Datum","1820–1842","Turnsperre"],["Datum","Februar 1848","Februarrevolution in Frankreich, II. Republik"],["Datum","März 1848","Revolutionen in ganz Europa"],["Begriff","Burschenschaft","deutsch-national gesinnte Studentenverbindung"],["Begriff","Zensur","staatliche Kontrolle von Presse und Büchern"],["Begriff","Spitzelwesen","Überwachung der Bürger durch Geheimpolizei"]],
+merke:["1815–1848: Restauration (politisch), Biedermeier (Rückzug ins Private), Vormärz (Zeit vor März 1848).","Karlsbader Beschlüsse 1819: Auslöser Mord an Kotzebue und Hep-Hep-Unruhen.","Maßnahmen: Zensur, Verbot der Burschenschaften, Überwachung der Universitäten, Turnsperre, Berufsverbot.","Österreich und Deutschland werden Polizeistaaten mit Zensur und Spitzelwesen.","Februarrevolution 1848 in Frankreich löst im März 1848 Revolutionen in ganz Europa aus."],
+fragen:[
+{op:"erklären",q:"Erkläre die Begriffe Restauration, Biedermeier und Vormärz.",a:"Restauration: Wiederherstellung der Zustände vor der Revolution und Unterdrückung ihrer Ideen. Biedermeier: Rückzug des Bürgertums ins Private, schönes Eigenheim, eigene Kunst- und Möbelstil 1815–1848. Vormärz: die Zeit vor der Märzrevolution 1848."},
+{op:"nennen",q:"Nenne Auslöser und Maßnahmen der Karlsbader Beschlüsse.",a:"Auslöser: Ermordung Kotzebues durch einen Burschenschafter, Hep-Hep-Unruhen (1819). Maßnahmen: Verbot der schriftlichen Meinungsfreiheit und der Burschenschaften, Überwachung der Universitäten, Turnsperre, Pressezensur, Berufsverbot für liberale/nationale Professoren."},
+{op:"analysieren",q:"Analysiere die Karikatur „Der Denker-Club“.",a:"Beschreibung: Männer mit Maulkörben am Tisch, Regeln an der Wand. Aussage: Im Vormärz durfte man nicht frei reden und schreiben; Maulkörbe = Zensur. Intention: Kritik und Spott über die Unterdrückung der Meinungsfreiheit durch die Karlsbader Beschlüsse."},
+{op:"nennen",q:"Nenne Menschenrechte und Freiheiten, die im Vormärz unterdrückt wurden.",a:"Meinungs-, Presse-, Rede-, Versammlungs-, Vereinigungsfreiheit, Wissenschafts- und Lehrfreiheit, politische Mitbestimmung."},
+{op:"erklären",q:"Erkläre den Zusammenhang zwischen politischer Unterdrückung und Biedermeier.",a:"Weil Zensur und Spitzel das öffentliche Leben kontrollierten, zog sich das Bürgertum in die eigenen vier Wände zurück. Daraus entstand die Biedermeier-Kultur mit Wohnkultur, Hausmusik und schönen Möbeln."}],
+karten:[["Was bedeutet Vormärz?","Die Zeit vor der Märzrevolution 1848 (1815–1848)"],["Was ist Biedermeier?","Rückzug des Bürgertums ins Private, eigener Kunst- und Möbelstil 1815–1848"],["Wann waren die Karlsbader Beschlüsse?","1819"],["Auslöser der Karlsbader Beschlüsse?","Mord an Kotzebue und Hep-Hep-Unruhen"],["Was ist eine Burschenschaft?","deutsch-national gesinnte Studentenverbindung"],["Wie lange dauerte die Turnsperre?","1820–1842"],["Was ist ein Polizeistaat?","Staat, der Bürger mit Zensur und Spitzeln kontrolliert"],["Was löste die Revolutionen im März 1848 aus?","Die Februarrevolution 1848 in Frankreich (II. Republik)"]],
+quiz:[
+["Was löste die Karlsbader Beschlüsse aus?",["Der Bastillesturm","Die Ermordung Kotzebues","Napoleons Rückkehr","Die Märzrevolution"],1,"Mord durch einen Burschenschafter + Hep-Hep-Unruhen, 1819."],
+["Was bedeutet „Biedermeier“?",["Revolution der Bauern","Rückzug ins Private, eigener Kunststil","Ein Krieg","Ein Gesetz"],1,"Das Bürgertum legte Wert auf ein schönes Eigenheim."],
+["Welche Maßnahme gehörte NICHT zu den Karlsbader Beschlüssen?",["Pressezensur","Verbot der Burschenschaften","Einführung der Pressefreiheit","Überwachung der Universitäten"],2,"Die Pressefreiheit wurde eingeschränkt, nicht eingeführt."],
+["Wofür steht die Bezeichnung Vormärz?",["März 1789","Zeit vor der Revolution im März 1848","Vor dem Wiener Kongress","Frühlingsanfang"],1,"1815–1848."],
+["Was symbolisieren die Maulkörbe in der Karikatur „Der Denker-Club“?",["Hunde","Zensur und Unterdrückung","Krankheit","Hunger"],1,"Man durfte seine Meinung nicht äußern."]]
+});
+
+TOPICS.push({
+id:"ln", tab:"Liberalismus & Nationalismus", color:"#00838f",
+title:"Liberalismus und Nationalismus",
+ueberblick:"Liberalismus und Nationalismus sind zwei politische Erbstücke der Französischen Revolution, die im Vormärz unterdrückt werden. Der Liberalismus fordert Freiheit vom Staat, eine Verfassung und Mitbestimmung (wirtschaftlich: freie Marktwirtschaft). Der Nationalismus will, dass alle Menschen einer Nation in einem Staat leben; er entsteht durch die Volksarmee der Revolution und den Kampf gegen Napoleon.",
+kern:"Liberalismus = Kampf für Freiheit und Verfassung gegen den Absolutismus. Nationalismus = Ziel, dass jede Nation ihren eigenen Staat hat. Beide bedrohten die Ordnung Metternichs.",
+body:`
+<h3 data-s="Liberalismus">A. Liberalismus</h3>
+<div class="card"><b>Definition:</b> Liberalismus von lat. <i>liber</i> = frei bzw. <i>liberalis</i> = die Freiheit betreffend.
+<ul><li><b><mark>4 Grundpfeiler:</mark></b> Recht auf <b>Selbstbestimmung</b> und <b>politische Mitbestimmung</b>; <b>Beschränkung der politischen Macht</b>; <b>Freiheit gegenüber dem Staat</b>; <b>Selbstregulierung der Wirtschaft</b>.</li>
+<li><b>Entwicklung:</b> Aufbegehren gegen den <b>Absolutismus</b> und den <b>Ständestaat</b>.</li>
+<li><b>Begründer:</b> <b>Adam Smith</b> (Wirtschaftsliberalismus), <b>John Locke</b> (klassischer Liberalismus).</li>
+<li><b>Formen:</b> klassischer, wirtschaftlicher, politischer, sozialer Liberalismus, Neoliberalismus.</li>
+<li>In Deutschland durch die <b>FDP</b> vertreten. Österreich: <span class="zi"><b>NEOS</b>; früher das Liberale Forum (LIF). Liberale Ideen gibt es auch in anderen Parteien.</span></li></ul></div>
+<p>Die Liberalen forderten eine <b>Verfassung</b> (Staatsgrundgesetz, an das sich selbst der König/Kaiser halten muss), in der die Freiheitsrechte festgeschrieben sind.</p>
+<h3 data-s="Heute vs. 19. Jh.">A1. Liberalismus heute und im 19. Jahrhundert</h3>
+<div class="zusatz"><table><tr><th>Heute meist gemeint</th><th>Im 19. Jahrhundert</th></tr>
+<tr><td>wirtschaftsliberal (wenig Staat, freier Markt, niedrige Steuern) und gesellschaftlich offen (individuelle Freiheit, Toleranz)</td><td>revolutionäre Bewegung des Bürgertums gegen Absolutismus und Adelsvorrechte: Verfassung, Grundrechte (Presse-, Meinungs-, Versammlungsfreiheit), Parlament, Rechtsstaat, Gewerbefreiheit</td></tr></table></div>
+<h4>Welche Forderungen passen zum Liberalismus?</h4>
+<div class="zusatz"><table><tr><th>Passt (liberal)</th><th>Passt nicht (streichen)</th></tr>
+<tr><td>Freier Wettbewerb · Freier Markt · Schlanker Staat · Privatisierung verstaatlichter Unternehmen · Staat schafft Rahmenbedingungen für freie Wirtschaft (Rechtsstaat)</td><td>Verstaatlichung der Wirtschaft · Starker Sozialstaat · Gratis Bildung ohne Studiengebühren · Law & Order mit möglichst vielen Kompetenzen für die Polizei</td></tr></table>
+<span class="small">Hinweis: Im Arbeitsblatt steht „Schanker Staat“, gemeint ist „schlanker Staat“.</span></div>
+<h3 data-s="Adam Smith">A2. Wirtschaftsliberalismus und Adam Smith</h3>
+<ul>
+<li><b>Wirtschaftsliberalismus</b> = <b>freie Marktwirtschaft</b>: ein sich selbst regulierendes System, gesteuert durch die <b><mark>„unsichtbare Hand“</mark></b> des Marktes; freie wirtschaftliche Handlung.</li>
+<li><b>Smiths Theorie der „unsichtbaren Hand“:</b> Der einzelne Mensch trägt, indem er seine <b>eigennützigen Ziele</b> verfolgt, zum <b>Wohl der Gesellschaft</b> bei. <b>Staatliche Eingriffe</b> in die Wirtschaft werden abgelehnt → <b><mark>„Nachtwächterstaat“</mark></b> (der Staat sorgt nur für Sicherheit und Ordnung).</li>
+<li>In der Französischen Revolution umgesetzt: Abschaffung der Zünfte, Gewerbefreiheit.</li>
+</ul>
+<h3 data-s="Nationalismus">B. Nationalismus</h3>
+<div class="card"><b>Definition:</b> „Politische Strömung, deren Ziel es ist, dass <b><mark>alle Menschen (Angehörigen) einer Nation in einem Staat leben</mark></b>.“<br><span class="small">Falsche Lösungen im Arbeitsblatt: „… alle der Nation nicht Angehörigen verjagt werden“ und „… alle Nationen gleichgestellt werden“.</span></div>
+<p>Ein weiteres politisches Vermächtnis der Französischen Revolution, das im Vormärz unterdrückt wurde.</p>
+<h3 data-s="Entstehung">B1. Entstehung des Nationalismus</h3>
+<div class="flow">
+<div class="box"><b class="t">Vor der Revolution</b><b>Loyalität</b> zum Herrscher bzw. <b>Standeszugehörigkeit</b> wichtig; <b>ethnische</b> Zugehörigkeit wenig bedeutend. 17./18. Jh.: Fürsten halten <b>internationale Söldnerheere</b>.</div>
+<div class="arrow">→</div>
+<div class="box"><b class="t">Französische Revolution</b><b>Revolutionsarmee = nationale Volksarmee</b>: Großteil der wehrfähigen Männer eingezogen (<b><mark>levée en masse = Massenrekrutierung</mark></b>). Leute aus verschiedenen Regionen und <b>sozialen</b> Schichten dienen gemeinsam → <b><mark>„Wir-Gefühl“</mark></b>.</div>
+<div class="arrow">→</div>
+<div class="box"><b class="t">Folge</b>Wegen Zahl und Motivation ist die Volksarmee (Milizheer) den Söldnerarmeen <b>überlegen</b> → Modell wird überall nachgeahmt → in ganz Europa entsteht ein <b>„Wir“ und „die Anderen“-Gefühl</b>.</div>
+</div>
+<p>Dazu kam der Widerstand der Völker gegen <b>Napoleons</b> Herrschaft (siehe Tab Napoleon).</p>
+<div class="zusatz"><b>Woher kommt das Wort „Krawatte“?</b> Im 17. Jh. (Dreißigjähriger Krieg) dienten <b>kroatische Söldner</b> im französischen Heer. Sie trugen auffällige Halstücher. Die Franzosen nannten diese Mode „à la croate“ → <b>cravate</b> → Krawatte. Das zeigt: Söldnerheere waren international, die Herkunft der Soldaten spielte keine Rolle.</div>
+<h3 data-s="Europa 1815">B2. Europa 1815 und Unterdrückung</h3>
+<h4>Kartenanalyse: Europa 1815</h4>
+<ul>
+<li><b>Nationen mit eigenem Staat (1815):</b> Frankreich, Spanien, Portugal, Großbritannien, Schweiz <span class="zi">auch z.B. Niederlande, Schweden, Dänemark</span></li>
+<li><b>Nationen ohne eigenen Staat:</b> <span class="zi">Deutsche und Italiener (in viele Staaten zersplittert); Polen (aufgeteilt); Tschechen, Slowaken, Ungarn, Kroaten, Slowenen u.a. im Kaisertum Österreich; Griechen, Serben, Bulgaren im Osmanischen Reich</span></li>
+</ul>
+<h4>Warum wurde der Nationalismus im Vormärz unterdrückt?</h4>
+<table><tr><th>Österreich</th><th>Deutschland</th></tr>
+<tr><td>Bedrohte die <b>Einheit Österreichs</b>: Österreich war ein <b><mark>Vielvölkerstaat</mark></b>; wenn jede Nation einen eigenen Staat will, zerfällt es.</td><td>Bedrohte die <b>Unabhängigkeit der einzelnen deutschen Staaten</b>: Ein deutscher Nationalstaat hätte die Macht der vielen Fürsten beendet.</td></tr></table>
+<h3 data-s="Nation & Symbole">B3. Nation, Patriotismus, Symbole</h3>
+<h4>Was ist eine Nation?</h4>
+<p>Merkmale (Gemeinsamkeiten): <b>Sprache/Kultur</b>, <b>Abstammung/Herkunft</b>, <b>Ideologie</b> (z.B. USA: gemeinsame Werte). → <b><mark>Die Nation entsteht in den Köpfen.</mark></b></p>
+<h4>Nationalismus vs. Patriotismus</h4>
+<ul><li><b>Nationalismus</b> bezeichnet heute meist ein auf <b>Herabwürdigung des Anderen</b> beruhendes Überlegenheitsgefühl.</li>
+<li><b>Patriotismus</b> ist als <b>„Vaterlandsliebe“</b> (noch) positiv besetzt.</li></ul>
+<h4>Nationale Symbole</h4>
+<p><b>Fahne, Hymne, Nationalfeiertag, Nationalhelden.</b> Beispiel Frankreich: Trikolore, Marseillaise, 14. Juli, Jeanne d'Arc / Napoleon <span class="zi">Nationalhelden</span>. Beispiel Österreich: <span class="zi">Rot-Weiß-Rot, Bundeshymne, 26. Oktober, Andreas Hofer</span>.</p>
+<h4>Flaggen und ihre Herkunft</h4>
+<ul>
+<li>Bereits im <b>17. Jh.</b> verwendeten <b>holländische Schiffe</b> eine gemeinsame Flagge, um sich auf See zu erkennen → <b>Vorbild</b>.</li>
+<li>Die Idee gefällt <b>Zar Peter dem Großen</b>: Er reist Anfang des 18. Jh. <b>inkognito nach Holland</b>, um das Seewesen zu studieren, und erkennt: Die russische Flotte braucht eine Flagge (<span class="zi">Weiß-Blau-Rot, die holländischen Farben umgestellt</span>).</li>
+<li>Viele <b>slawische Nationen</b> orientierten sich an der Fahne <b>Russlands</b>, der führenden slawischen Nation (<b>„Panslawismus“</b>): <b>Tschechen, Serben, Kroaten, Slowaken, Slowenen</b>.</li>
+</ul>
+`,
+ursachen:[["Ursachen","Aufklärung; Französische Revolution (Menschenrechte, Volksarmee, levée en masse); Widerstand gegen Napoleon"],["Verlauf","Im Vormärz unterdrückt (Karlsbader Beschlüsse); Liberale fordern Verfassung und Grundrechte, Nationalisten einen Nationalstaat"],["Folgen","Revolutionen 1848; Bedrohung für Vielvölkerstaat Österreich und für die deutschen Einzelstaaten"]],
+personen:[["Person","Adam Smith","Begründer des Wirtschaftsliberalismus, „unsichtbare Hand“"],["Person","John Locke","Begründer des klassischen Liberalismus"],["Person","Peter der Große","Zar, führte die russische Flagge nach holländischem Vorbild ein"],["Begriff","Liberalismus","von lat. liber = frei; Freiheit, Verfassung, Mitbestimmung"],["Begriff","Nachtwächterstaat","Staat greift nicht in die Wirtschaft ein"],["Begriff","Nationalismus","alle Menschen einer Nation in einem Staat"],["Begriff","levée en masse","Massenrekrutierung, Volksarmee"],["Begriff","Patriotismus","Vaterlandsliebe"],["Begriff","Panslawismus","Zusammengehörigkeit der slawischen Völker"]],
+merke:["Liberalismus (lat. liber = frei): Selbstbestimmung, Mitbestimmung, Machtbeschränkung, Freiheit vom Staat, freie Wirtschaft; Forderung nach Verfassung.","Adam Smith: „unsichtbare Hand“ des Marktes, Eigennutz dient dem Gemeinwohl, Nachtwächterstaat.","Nationalismus: Ziel, dass alle Menschen einer Nation in einem Staat leben.","Entstehung: Volksarmee der Revolution (levée en masse) → Wir-Gefühl; Widerstand gegen Napoleon.","Im Vormärz unterdrückt: bedroht die Einheit Österreichs (Vielvölkerstaat) und die Unabhängigkeit der deutschen Einzelstaaten."],
+fragen:[
+{op:"nennen",q:"Nenne die vier Grundpfeiler des Liberalismus.",a:"Recht auf Selbstbestimmung und politische Mitbestimmung; Beschränkung der politischen Macht; Freiheit gegenüber dem Staat; Selbstregulierung der Wirtschaft."},
+{op:"erklären",q:"Erkläre Adam Smiths Theorie der „unsichtbaren Hand“.",a:"Wenn jeder Mensch seine eigenen (eigennützigen) Ziele verfolgt, entsteht über Angebot und Nachfrage automatisch Wohlstand für die Gesellschaft, wie von einer unsichtbaren Hand gelenkt. Der Staat soll sich aus der Wirtschaft heraushalten (Nachtwächterstaat)."},
+{op:"erklären",q:"Erkläre, wie der Nationalismus entstand.",a:"Vor der Revolution zählten Loyalität zum Herrscher und Stand, Heere bestanden aus internationalen Söldnern. Die Französische Revolution schuf mit der levée en masse eine nationale Volksarmee; Männer aus allen Regionen und Schichten kämpften gemeinsam → Wir-Gefühl. Diese Armee war überlegen und wurde überall kopiert; dazu kam der Widerstand gegen Napoleon. So entstand in ganz Europa das Gefühl „wir“ und „die Anderen“."},
+{op:"erklären",q:"Erkläre, warum der Nationalismus in Österreich und Deutschland unterdrückt wurde.",a:"Österreich war ein Vielvölkerstaat; der Nationalismus bedrohte seine Einheit. In Deutschland hätte ein Nationalstaat die Unabhängigkeit der vielen Einzelstaaten und die Macht ihrer Fürsten beendet."},
+{op:"vergleichen",q:"Vergleiche Nationalismus und Patriotismus.",a:"Nationalismus: heute meist Überlegenheitsgefühl, das andere herabwürdigt. Patriotismus: Vaterlandsliebe, positiv besetzt, ohne Abwertung anderer."},
+{op:"vergleichen",q:"Vergleiche den Liberalismus im 19. Jahrhundert mit dem heutigen Verständnis.",a:"19. Jh.: Bewegung des Bürgertums gegen Absolutismus, für Verfassung, Grundrechte und Mitbestimmung. Heute: vor allem freier Markt, wenig Staat und individuelle Freiheit (in Österreich z.B. NEOS)."},
+{op:"beurteilen",q:"Beurteile, ob die Nation „in den Köpfen“ entsteht.",a:"Ja, weitgehend: Merkmale wie Sprache, Abstammung oder Ideologie sind nicht bei allen Nationen gleich (USA: gemeinsame Werte statt Abstammung). Entscheidend ist, dass sich Menschen zusammengehörig fühlen; Symbole wie Fahne und Hymne stärken dieses Gefühl."}],
+karten:[["Woher kommt das Wort Liberalismus?","lat. liber = frei"],["Was forderten die Liberalen?","eine Verfassung mit Grundrechten, an die sich auch der Kaiser halten muss"],["Begründer des Wirtschaftsliberalismus?","Adam Smith"],["Was ist ein Nachtwächterstaat?","Staat, der nur für Sicherheit sorgt und nicht in die Wirtschaft eingreift"],["Definition Nationalismus?","Ziel, dass alle Menschen einer Nation in einem Staat leben"],["Was bedeutet levée en masse?","Massenrekrutierung → Volksarmee"],["Warum war die Volksarmee überlegen?","enorme Zahl und hohe Motivation"],["Warum wurde der Nationalismus in Österreich unterdrückt?","Er bedrohte die Einheit des Vielvölkerstaates"],["Nenne 4 nationale Symbole","Fahne, Hymne, Nationalfeiertag, Nationalhelden"],["Nationalismus vs. Patriotismus?","Überlegenheitsgefühl vs. Vaterlandsliebe"],["Was ist Panslawismus?","Orientierung slawischer Völker an Russland (z.B. Flaggenfarben)"],["Welche Nationen hatten 1815 schon einen Staat?","z.B. Frankreich, Spanien, Portugal, Großbritannien, Schweiz"],["Liberale Partei in Österreich?","NEOS (früher Liberales Forum)"]],
+quiz:[
+["Was bedeutet lat. „liber“?",["Buch","frei","lieb","Volk"],1,"Liberalismus = Strömung der Freiheit."],
+["Welche Forderung passt zum Liberalismus?",["Verstaatlichung der Wirtschaft","Freier Markt","Möglichst viel Polizei","Abschaffung der Verfassung"],1,"Freier Markt, freier Wettbewerb, schlanker Staat."],
+["Was ist das Ziel des Nationalismus?",["Alle Nationen gleichstellen","Alle Menschen einer Nation in einem Staat","Fremde verjagen","Monarchie stärken"],1,"So lautet die Definition im Unterricht."],
+["Was bedeutet „levée en masse“?",["Steuererhöhung","Massenrekrutierung","Volksabstimmung","Revolutionsgericht"],1,"Allgemeine Wehrpflicht → Volksarmee → Wir-Gefühl."],
+["Warum unterdrückte Österreich den Nationalismus?",["Weil es ein Vielvölkerstaat war","Weil es keine Armee hatte","Weil Napoleon es befahl","Weil es eine Republik war"],0,"Nationalismus hätte die Einheit Österreichs bedroht."],
+["Wer prägte die Idee der „unsichtbaren Hand“?",["John Locke","Rousseau","Adam Smith","Metternich"],2,"Adam Smith, Wirtschaftsliberalismus."],
+["Welche Nation orientierte sich NICHT an der russischen Flagge (Panslawismus)?",["Serben","Slowaken","Franzosen","Slowenen"],2,"Tschechen, Serben, Kroaten, Slowaken und Slowenen sind slawische Nationen."]]
+});
+
+TOPICS.push({
+id:"ir", tab:"Industrielle Revolution", color:"#5d4037",
+title:"Industrielle Revolution: Folgen und soziale Frage",
+ueberblick:"Maschinen ersetzen Handwerker, gleichzeitig wächst die Bevölkerung stark. Es gibt mehr Arbeiter und weniger Arbeitsplätze, die Löhne sinken: Arbeiterelend. Es entstehen Großbürgertum und Proletariat, Städte wachsen, Handel und Nationalismus nehmen zu, und beide Gruppen fordern politische Mitbestimmung.",
+kern:"Die Industrielle Revolution verändert Wirtschaft und Gesellschaft: Sie bringt Wohlstand für das Großbürgertum, aber Elend für die Arbeiter (Proletariat), die Mitte des 19. Jh. noch fast keine Rechte haben.",
+body:`
+<div class="zusatz">Die Industrielle Revolution begann Mitte des 18. Jh. in <b>England</b> (Dampfmaschine, verbessert von James Watt 1769; Textilmaschinen) und erreichte Österreich und Deutschland im 19. Jh. Sie lief parallel zu Revolution, Napoleon und Vormärz.</div>
+<h3 data-s="Arbeiterelend">1. Ursachen des Arbeiterelends</h3>
+<div class="flow">
+<div class="box"><b class="t">Bevölkerungswachstum</b>→ mehr Arbeiter</div>
+<div class="box"><b class="t">Maschinen</b>(statt Handwerker) → weniger Arbeitsplätze</div>
+<div class="arrow">→</div>
+<div class="box"><b class="t">Löhne sinken</b>viele Arbeiter, wenig Arbeit</div>
+<div class="arrow">→</div>
+<div class="box"><b class="t"><mark>ARBEITERELEND</mark></b><span class="zi">„soziale Frage“</span></div>
+</div>
+<h3 data-s="Fehlende Rechte">2. Arbeitnehmerrechte, die Mitte des 19. Jh. noch nicht erkämpft waren</h3>
+<ul>
+<li><b>Geregelte Maximalarbeitszeiten</b> (in Fabriken im 19. Jh. verbreitet: <b><mark>16-Stunden-Tag</mark></b>, Nachtarbeit, Sonntagsarbeit)</li>
+<li><b>Mindestlöhne</b> (Kollektivvertrag)</li>
+<li><b>Verbot von Kinderarbeit</b></li>
+<li><b>Urlaub</b></li>
+<li><b>Unfallversicherung</b>, <b>Krankenversicherung</b>, <b>Arbeitslosenversicherung</b></li>
+<li><b>Mitversicherung von Familienangehörigen</b></li>
+<li><b>Personalvertretung</b> (Betriebsrat)</li>
+</ul>
+<h3 data-s="Folgen">3. Folgen der Industriellen Revolution</h3>
+<table><tr><th>Bereich</th><th>Folge</th></tr>
+<tr><td>Gesellschaft</td><td>Neue Schichten: <b>Großbürgertum</b> (Fabrikbesitzer) und <b><mark>Proletariat</mark></b> (Fabrikarbeiter); beide <b>fordern politische Mitbestimmung</b></td></tr>
+<tr><td>Bevölkerung</td><td><b>Bevölkerungsexplosion</b>; <b>Städte wachsen</b> (<b><mark>Landflucht</mark></b>)</td></tr>
+<tr><td>Wirtschaft</td><td><b>Handel +</b>; <b>Nation = Wirtschaftsraum</b> (einheitlicher Markt, Zölle) → <b>Nationalismus +</b></td></tr>
+<tr><td>Welt</td><td><b>Europäisierung der Welt</b> → <b><mark>Imperialismus</mark></b> (Suche nach Rohstoffen und Absatzmärkten)</td></tr></table>
+<p><b>Verbindung zu den anderen Themen:</b> Der <b>Wirtschaftsliberalismus</b> (freier Markt, kein Staatseingriff) verschärfte das Elend der Arbeiter (vgl. Streikverbot in der Französischen Revolution). Das Großbürgertum stärkte den <b>Liberalismus</b>, die Idee der Nation als Wirtschaftsraum den <b>Nationalismus</b>.</p>
+`,
+ursachen:[["Ursachen","Maschinen statt Handwerker; Bevölkerungswachstum"],["Verlauf","mehr Arbeiter, weniger Arbeitsplätze → sinkende Löhne → Arbeiterelend; keine Arbeitnehmerrechte"],["Folgen","Großbürgertum und Proletariat; Städtewachstum, Landflucht; mehr Handel; Nationalismus; Imperialismus; Forderung nach Mitbestimmung"]],
+personen:[["Begriff","Proletariat","Schicht der besitzlosen Fabrikarbeiter"],["Begriff","Großbürgertum","reiche Fabrikbesitzer, Unternehmer, Bankiers"],["Begriff","Landflucht","Abwanderung vom Land in die Städte"],["Begriff","Imperialismus","Streben nach Kolonien und Weltmacht"],["Begriff","Kollektivvertrag","Vertrag über Mindestlöhne und Arbeitsbedingungen"],["Begriff","Betriebsrat","gewählte Vertretung der Arbeitnehmer im Betrieb"]],
+merke:["Maschinen + Bevölkerungswachstum → mehr Arbeiter, weniger Arbeitsplätze → Löhne sinken → Arbeiterelend.","Mitte 19. Jh.: 16-Stunden-Tag, Kinderarbeit, keine Versicherungen, kein Urlaub, kein Mindestlohn, kein Betriebsrat.","Neue Schichten: Großbürgertum und Proletariat; beide fordern Mitbestimmung.","Städte wachsen (Landflucht), Handel steigt, Nation = Wirtschaftsraum → Nationalismus; Imperialismus."],
+fragen:[
+{op:"erklären",q:"Erkläre, wie es zum Arbeiterelend kam.",a:"Durch das Bevölkerungswachstum gab es mehr Arbeiter, gleichzeitig ersetzten Maschinen die Handwerker, es gab weniger Arbeitsplätze. Viele mussten um wenige Stellen konkurrieren, die Löhne sanken: Arbeiterelend."},
+{op:"nennen",q:"Nenne Arbeitnehmerrechte, die Mitte des 19. Jahrhunderts noch fehlten.",a:"Maximalarbeitszeit, Mindestlohn (Kollektivvertrag), Verbot von Kinderarbeit, Urlaub, Unfall-, Kranken-, Arbeitslosenversicherung, Mitversicherung der Familie, Betriebsrat."},
+{op:"beschreiben",q:"Beschreibe die Folgen der Industriellen Revolution für die Gesellschaft.",a:"Es entstehen Großbürgertum und Proletariat; die Bevölkerung explodiert, Menschen ziehen in die Städte (Landflucht); beide neuen Schichten fordern politische Mitbestimmung."},
+{op:"analysieren",q:"Analysiere den Zusammenhang zwischen Industrieller Revolution und Nationalismus.",a:"Mehr Handel macht die Nation zu einem gemeinsamen Wirtschaftsraum (einheitlicher Markt, Zölle). Das stärkt das Interesse an einem Nationalstaat und damit den Nationalismus; später führt die Suche nach Rohstoffen und Märkten zum Imperialismus."}],
+karten:[["Was ist das Proletariat?","Schicht der besitzlosen Fabrikarbeiter"],["Was ist Landflucht?","Abwanderung vom Land in die Städte"],["Warum sanken die Löhne?","mehr Arbeiter (Bevölkerungswachstum), weniger Arbeitsplätze (Maschinen)"],["Typische Arbeitszeit in Fabriken im 19. Jh.?","16-Stunden-Tag, auch Nacht- und Sonntagsarbeit"],["Was bedeutet Imperialismus?","Europäisierung der Welt, Streben nach Kolonien"],["Welche neuen Schichten entstanden?","Großbürgertum und Proletariat"]],
+quiz:[
+["Warum sanken in der Industriellen Revolution die Löhne?",["Weniger Arbeiter, mehr Arbeit","Mehr Arbeiter, weniger Arbeitsplätze","Wegen Napoleon","Wegen der Zensur"],1,"Bevölkerungswachstum + Maschinen statt Handwerker."],
+["Welches Recht hatten Fabrikarbeiter Mitte des 19. Jh. NICHT?",["Arbeiten","Urlaub","Umziehen in die Stadt","Kinder haben"],1,"Urlaub, Versicherungen, Mindestlohn, Betriebsrat fehlten."],
+["Was bedeutet Landflucht?",["Flucht aus dem Land ins Ausland","Abwanderung vom Land in die Städte","Bauernaufstand","Auswanderung nach Amerika"],1,"Städte wuchsen stark."],
+["Welche neue Schicht entstand?",["Adel","Klerus","Proletariat","Ritter"],2,"Proletariat = Fabrikarbeiter; dazu das Großbürgertum."]]
+});
+
+const TOP5 = [
+"<b>Aufklärung</b> (Rousseau, Montesquieu) liefert die Ideen: Volkssouveränität, Gewaltenteilung, Menschenrechte. Die <b>USA</b> setzen sie 1776/1787 als Erste um.",
+"<b>Französische Revolution 1789–1799</b>: Schulden + Steuern nur vom 3. Stand → Nationalversammlung, Bastille, Menschenrechte → konstitutionelle Monarchie 1791 → Republik 1792 → Terror 1793/94 → Direktorium.",
+"<b>Napoleon 1799–1815</b>: beendet die Revolution, wird Kaiser, verbreitet aber den Code Civil; seine Eroberungen wecken den <b>Nationalismus</b>. Ende: Russland 1812, Leipzig 1813, Waterloo 1815.",
+"<b>Wiener Kongress 1814/15</b> (Metternich): Restauration, Legitimität, Heilige Allianz, Gleichgewicht → im <b>Vormärz</b> Unterdrückung (Karlsbader Beschlüsse 1819, Zensur, Spitzel), Rückzug ins <b>Biedermeier</b>, bis März 1848.",
+"<b>Liberalismus</b> (Freiheit, Verfassung, freier Markt) und <b>Nationalismus</b> (ein Staat pro Nation) sind die Erben der Revolution; die <b>Industrielle Revolution</b> schafft Proletariat und Großbürgertum, die Mitbestimmung fordern."
+];
+
+const TIMELINE = [
+["1614","Letzte Einberufung der Generalstände vor 1789","fr"],
+["1756–1763","Siebenjähriger Krieg (England siegt über Frankreich)","usa"],
+["Mitte 18. Jh.","Beginn der Industriellen Revolution in England","ir"],
+["1769","Geburt Napoleons auf Korsika","nap"],
+["1773","Boston Tea Party","usa"],
+["1775–1783","Amerikanischer Unabhängigkeitskrieg","usa"],
+["4.7.1776","Unabhängigkeitserklärung der USA","usa"],
+["1778","Französischer Seesieg; „Frisur zur Unabhängigkeit“","fr"],
+["1787","US-Verfassung beschlossen (Philadelphia)","usa"],
+["1788","Staatshaushalt Frankreichs: 126 Mio. Livres Defizit","fr"],
+["4.3.1789","US-Verfassung tritt in Kraft","usa"],
+["1789–1797","George Washington 1. US-Präsident","usa"],
+["5.5.1789","Eröffnung der Generalstände (Präsentation: Juni 1789)","fr"],
+["17.6.1789","Der 3. Stand erklärt sich zur Nationalversammlung","fr"],
+["20.6.1789","Ballhausschwur","fr"],
+["14.7.1789","Sturm auf die Bastille","fr"],
+["August 1789","Abschaffung des Feudalismus (Augustgesetze)","fr"],
+["26.8.1789","Erklärung der Menschen- und Bürgerrechte","fr"],
+["Juni 1791","Flucht nach Varennes","fr"],
+["Sept. 1791","Verfassung: konstitutionelle Monarchie, Zensuswahlrecht","fr"],
+["1791","Bill of Rights (10 Zusatzartikel)","usa"],
+["April 1792","Frankreich erklärt Österreich den Krieg (Koalitionskriege)","fr"],
+["20.6.1792","Das Volk zwingt dem König die Freiheitsmütze auf","fr"],
+["Juli 1792","Marseillaise in Paris gesungen","fr"],
+["August 1792","Sturm auf die Tuilerien, König gefangen","fr"],
+["21.9.1792","Ausrufung der Republik (Nationalkonvent)","fr"],
+["22.9.1792","Beginn des Revolutionskalenders","fr"],
+["21.1.1793","Hinrichtung Ludwigs XVI. (Arbeitsblatt: 1792)","fr"],
+["1793","Hinrichtung Marie Antoinettes; Republikanische Verfassung (nie in Kraft); Meter definiert; Napoleon General","fr"],
+["1793–1794","Schreckensherrschaft der Jakobiner (Arbeitsblatt: 1792–1794)","fr"],
+["28.7.1794","Hinrichtung Robespierres","fr"],
+["1795–1799","Direktorium (Präsentation: 1794–1799)","fr"],
+["5.10.1795","Napoleon schlägt royalistischen Aufstand nieder","nap"],
+["1796/97","Italienfeldzug Napoleons, danach Ägyptenfeldzug","nap"],
+["9.11.1799","Staatsstreich Napoleons, Erster Konsul; Ende der Revolution","nap"],
+["2.12.1804","Napoleon krönt sich zum Kaiser","nap"],
+["1805","Trafalgar (Niederlage zur See); Austerlitz (Dreikaiserschlacht); Frieden von Pressburg","nap"],
+["1806","Jena und Auerstedt; Rheinbund; Ende des HRR; Kontinentalsperre; Ende Revolutionskalender","nap"],
+["1808/09","Volksaufstände in Spanien und Österreich","nap"],
+["1809","Aspern (1. Niederlage), Wagram, Frieden von Schönbrunn; Andreas Hofer am Berg Isel","nap"],
+["1810","Heirat mit Marie Louise; Andreas Hofer in Mantua erschossen","nap"],
+["1812","Russlandfeldzug, Brand Moskaus, Rückzug","nap"],
+["1813","Völkerschlacht bei Leipzig","nap"],
+["1814","Abdankung, Verbannung nach Elba; Ende der Kontinentalsperre","nap"],
+["1814/15","Wiener Kongress unter Metternich","wk"],
+["18.6.1815","Waterloo; Verbannung nach St. Helena","nap"],
+["1815","Heilige Allianz; Deutscher Bund","wk"],
+["1815–1848","Restauration, Biedermeier, Vormärz","vm"],
+["1817–1825","James Monroe US-Präsident (Monroe-Doktrin 1823)","usa"],
+["1819","Karlsbader Beschlüsse","vm"],
+["1820–1842","Turnsperre","vm"],
+["Februar 1848","Februarrevolution in Frankreich, II. Republik","vm"],
+["März 1848","Revolutionen in ganz Europa","vm"],
+["1875","Metrisches System wird internationaler Standard","fr"],
+["1886","Freiheitsstatue (Geschenk Frankreichs)","usa"],
+["1964","24. Zusatzartikel: Verbot der Wahlsteuer (poll tax)","usa"]
+];
+
+const GLOSSAR = [
+["Absolutismus","Herrschaftsform, in der der König allein und unbeschränkt regiert (Gottesgnadentum)."],
+["Ancien Régime","Die alte Ordnung in Frankreich vor 1789 (Absolutismus, Ständegesellschaft)."],
+["Aufklärung","Geistige Bewegung des 18. Jh.: Vernunft, Freiheit, Gleichheit; Rousseau, Montesquieu, Voltaire."],
+["Augustgesetze","1789: Abschaffung des Feudalsystems und der Privilegien."],
+["Balance of Power","Gleichgewicht der Mächte; britische Doktrin, Leitidee des Wiener Kongresses."],
+["Ballhausschwur","Schwur der Nationalversammlung 1789, erst nach einer Verfassung auseinanderzugehen."],
+["Bastille","Pariser Gefängnis und Waffenarsenal, Symbol des Ancien Régime; gestürmt am 14.7.1789."],
+["Biedermeier","Rückzug des Bürgertums ins Private 1815–1848; eigener Kunst- und Möbelstil."],
+["Bill of Rights","10 Zusatzartikel zur US-Verfassung (1791) mit Grundrechten."],
+["Boston Tea Party","1773: als Indianer verkleidete Siedler werfen britischen Tee ins Hafenbecken."],
+["Burschenschaft","Deutsch-national gesinnte Studentenverbindung, 1819 verboten."],
+["Code Civil","Bürgerliches Gesetzbuch Napoleons: gleiches Recht für alle; Grundlage des europäischen Zivilrechts."],
+["Dekade","10-Tage-Woche im Revolutionskalender."],
+["Deutscher Bund","Bund deutscher Staaten ab 1815 unter Führung Österreichs, Nachfolger des HRR."],
+["Direktorium","Regierung aus 5 Direktoren (1795–1799), Großbürgertum, Korruption."],
+["Erster Konsul","Titel Napoleons 1799–1804."],
+["Feudalismus","Ordnung, in der Bauern Grundherren (Adel, Kirche) Abgaben und Dienste leisten."],
+["Generalstände","Versammlung der drei Stände (Ständeversammlung); 1789 einberufen."],
+["Gewaltenteilung","Trennung von Gesetzgebung (Legislative), Ausführung (Exekutive) und Rechtsprechung (Judikative); Montesquieu."],
+["Girondisten","Gemäßigte Republikaner aus der Provinz; 1793 von den Jakobinern vertrieben."],
+["Großvaterklausel","Ausnahme von der Wahlsteuer für Bürger, deren Väter/Großväter wählen durften; gegen Afroamerikaner."],
+["Guillotine","Fallbeil, Symbol der Schreckensherrschaft."],
+["Hegemonie","Vorherrschaft eines Staates über andere."],
+["Heilige Allianz","Bündnis von Österreich, Preußen und Russland (1815) gegen Revolutionen."],
+["Imperialismus","Streben europäischer Staaten nach Kolonien und Weltmacht; „Europäisierung der Welt“."],
+["Jakobiner","Radikaler Klub der Revolution (Kloster St. Jakob); Robespierre, Danton, Marat."],
+["Karlsbader Beschlüsse","1819: Zensur, Verbot der Burschenschaften, Überwachung der Universitäten, Berufsverbote."],
+["Koalitionskriege","Kriege europäischer Bündnisse gegen das revolutionäre Frankreich und Napoleon."],
+["Kokarde","Rundes Abzeichen in den Farben der Revolution."],
+["Kongress (USA)","Repräsentantenhaus + Senat = Legislative der USA."],
+["Konkordat","Vertrag mit der katholischen Kirche (Napoleon)."],
+["Konstitutionelle Monarchie","Monarchie, in der der König an eine Verfassung gebunden ist (Frankreich 1791)."],
+["Kontinentalsperre","Napoleons Handelsverbot mit England (1806–1814)."],
+["Legitimität","Leitidee des Wiener Kongresses: alte, berechtigte Herrscherhäuser wieder einsetzen."],
+["levée en masse","Massenrekrutierung, allgemeine Wehrpflicht der Revolution → Volksarmee."],
+["Liberalismus","Politische Strömung für Freiheit (lat. liber), Verfassung, Mitbestimmung und freie Wirtschaft."],
+["Marseillaise","Kampflied der Revolution, heute französische Nationalhymne."],
+["Menschen- und Bürgerrechte","26.8.1789: Freiheit, Eigentum, Sicherheit, Widerstand gegen Unterdrückung; Herrschaft geht vom Volk aus."],
+["Midterm-Elections","US-Wahlen nach 2 Jahren: ganzes Repräsentantenhaus und 1/3 des Senats."],
+["Monroe-Doktrin","„Amerika den Amerikanern“ (James Monroe)."],
+["Nachtwächterstaat","Staat, der nur für Sicherheit sorgt und nicht in die Wirtschaft eingreift."],
+["Nation","Gemeinschaft durch Sprache/Kultur, Abstammung oder Ideologie; entsteht „in den Köpfen“."],
+["Nationalismus","Politische Strömung mit dem Ziel, dass alle Menschen einer Nation in einem Staat leben."],
+["Nationalkonvent","Volksvertretung ab 1792, gewählt von allen Männern über 21; rief die Republik aus."],
+["Nationalversammlung","Vertretung des ganzen Volkes; 17.6.1789 vom 3. Stand ausgerufen."],
+["No taxation without representation","Keine Steuern ohne Vertretung im Parlament; Slogan der Kolonisten."],
+["Panslawismus","Zusammengehörigkeit der slawischen Völker, Orientierung an Russland."],
+["Parlamentarische Demokratie","Regierung wird aus dem Parlament gebildet (z.B. Österreich)."],
+["Patriotismus","Vaterlandsliebe, positiv besetzt."],
+["Pileus / phrygische Mütze","Antike Freiheitskappe für freigelassene Sklaven; Vorbild der Jakobinermütze (Verwechslung mit der phrygischen Mütze)."],
+["Plebiszit","Volksabstimmung."],
+["Polizeistaat","Staat, der seine Bürger mit Zensur und Spitzeln kontrolliert."],
+["Präsidentielle Demokratie","Präsident wird separat gewählt, bildet die Regierung; starke Gewaltentrennung (USA)."],
+["Proletariat","Schicht der besitzlosen Fabrikarbeiter."],
+["Rechtsstaat","Staat, in dem alles Handeln gesetzeskonform sein muss; unabhängige Justiz, Recht statt Willkür."],
+["Reaktionär","Jemand, der gegen Fortschritt ist und alte Zustände zurück will."],
+["Reform","Veränderung, die dem Alten eine neue Form gibt (schrittweise)."],
+["Restauration","Wiederherstellung der Zustände vor der Französischen Revolution."],
+["Revolution","Umwälzung der politischen und gesellschaftlichen Ordnung, oft gewaltsam."],
+["Rheinbund","1806: 16 mit Napoleon verbündete deutsche Staaten."],
+["Sansculottes","Revolutionäre der Unterschicht, die lange Hosen statt Kniebundhosen (culottes) trugen."],
+["Schreckensherrschaft","Terror der Jakobiner 1793–1794, ca. 40.000 Hinrichtungen."],
+["Siebenjähriger Krieg","1756–1763, erster globaler Krieg; England siegt über Frankreich."],
+["Spitzelwesen","Überwachung der Bürger durch Geheimpolizei und Informanten."],
+["Stände","Gesellschaftsgruppen: 1. Geistlichkeit, 2. Adel, 3. Bürger und Bauern."],
+["Trikolore","Französische Flagge: Blau-Weiß-Rot."],
+["Unsichtbare Hand","Adam Smith: Eigennutz jedes Einzelnen führt über den Markt zum Gemeinwohl."],
+["Volkssouveränität","Alle Macht geht vom Volk aus (Rousseau)."],
+["Vormärz","Zeit vor der Märzrevolution 1848 (1815–1848)."],
+["Wahlmänner","Wählen in den USA den Präsidenten; „The winner takes it all“."],
+["Wirtschaftsliberalismus","Freie Marktwirtschaft ohne Staatseingriffe (Adam Smith)."],
+["Wohlfahrtsausschuss","Regierung der Jakobiner unter Robespierre (1793/94)."],
+["Zensur","Staatliche Kontrolle von Presse, Büchern und Meinungen."],
+["Zensuswahlrecht","Wahlrecht nach Besitz und Einkommen."],
+["Zünfte","Zusammenschlüsse von Handwerkern; 1791 in Frankreich abgeschafft (Gewerbefreiheit)."]
+];
+
+const ZUSAMMENHAENGE = [
+["u","Aufklärung → USA → Frankreich","Die Ideen von Rousseau und Montesquieu werden zuerst in den USA (1776/1787) umgesetzt. Die USA werden Vorbild für Frankreich; die Menschenrechte 1789 folgen der Bill of Rights."],
+["u","Siebenjähriger Krieg → zwei Revolutionen","England will seine Kriegsschulden über Steuern in den Kolonien bezahlen → amerikanische Revolution. Frankreich verschuldet sich durch den Krieg und die Unterstützung der USA → Finanzkrise → Französische Revolution."],
+["k","La Fayette als Brücke","Er kämpft in Amerika und wird Kommandeur der Nationalgarde in Frankreich: persönliche Verbindung beider Revolutionen."],
+["u","Revolution → Krieg → Radikalisierung","Die Angst der Monarchen vor dem Übergreifen der Revolution führt 1792 zum Krieg. Die Bedrohung von außen radikalisiert die Revolution (Republik, Hinrichtung des Königs, Terror, levée en masse)."],
+["f","levée en masse → Nationalismus","Die Volksarmee schafft ein Wir-Gefühl; sie ist überlegen und wird überall kopiert → Nationalismus in ganz Europa."],
+["b","Napoleon beendet die Revolution","1799 Staatsstreich, 1804 Kaiser: Bruch mit der Volksherrschaft. Aber Code Civil, Gleichheit vor dem Gesetz und metrisches System setzen Ideen der Revolution fort (Kontinuität)."],
+["f","Napoleons Eroberungen → Nationalismus","Ausbeutung der besetzten Länder („Der Krieg ernährt den Krieg“) weckt Widerstand der Völker (Spanien, Tirol, Preußen) → moderner Nationalismus; Idee eines italienischen Staates."],
+["b","1806: Ende des Heiligen Römischen Reiches","Rheinbund → Franz II. legt die Krone nieder. 1815 wird das Reich nicht wiederbelebt, stattdessen der Deutsche Bund."],
+["f","Napoleons Sturz → Wiener Kongress","Nach Leipzig und Waterloo ordnen die Sieger Europa neu: Restauration und Legitimität sind die Gegenbewegung zur Revolution."],
+["u","Wiener Kongress → Vormärz","Die Heilige Allianz und Metternich unterdrücken Liberalismus und Nationalismus (Karlsbader Beschlüsse 1819) → Polizeistaat, Biedermeier."],
+["f","Unterdrückung → Revolution 1848","Die Ideen lassen sich nicht verbieten („viral gegangen“). Die Februarrevolution in Frankreich löst im März 1848 Revolutionen in ganz Europa aus."],
+["k","Kontinuität der Ideen","Freiheit, Gleichheit, Brüderlichkeit, Menschenrechte, Republik, Nationalismus wandern: Aufklärung → USA → Frankreich → Europa (Napoleon) → Lateinamerika (Bolívar, Wappen Kubas/Argentiniens) → 1848."],
+["u","Wirtschaftsliberalismus → soziale Frage","Abschaffung der Zünfte und freier Markt (1791) nützen dem Großbürgertum; zusammen mit der Industriellen Revolution verschlechtert sich die Lage der Arbeiter (Streikverbot, Arbeiterelend)."],
+["u","Industrielle Revolution → Liberalismus und Nationalismus","Das Großbürgertum fordert Mitbestimmung (Liberalismus); die Nation als Wirtschaftsraum stärkt den Nationalismus; später Imperialismus."],
+["k","Rechtsstaat und Grundrechte heute","Bill of Rights, Menschenrechte 1789 und die Forderungen der Liberalen im Vormärz leben in heutigen Verfassungen weiter (österreichische Verfassung, Verfassungsgerichtshof)."]
+];
+
+
+</script>
+<script>
+(function(){
+const $ = s => document.querySelector(s);
+const main = $("#main"), nav = $("#nav");
+const store = {get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let learned = store.get("gspb_learned") || {};
+const byId = Object.fromEntries(TOPICS.map(t=>[t.id,t]));
+const TABS = [["uebersicht","Übersicht"],...TOPICS.map(t=>[t.id,t.tab]),["zeitleiste","Zeitleiste"],["begriffe","Begriffe"],["karten","Karteikarten"],["quiz","Quiz"],["zusammenhaenge","Zusammenhänge"]];
+const TABCOL={uebersicht:"#1d4e89",zeitleiste:"#455a64",begriffe:"#00796b",karten:"#ad1457",quiz:"#e65100",zusammenhaenge:"#4527a0"};
+TOPICS.forEach(t=>TABCOL[t.id]=t.color);
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const shuffle = a => {a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const legend = '<div class="legend"><span><mark>markiert</mark> = sehr wichtig</span><span><span class="zi" style="padding:0 4px">grau</span> = Zusatzinfo (nicht aus dem Unterricht)</span><span><span class="note">gelb kursiv</span> = Abweichung im Arbeitsblatt/der Präsentation</span></div>';
+
+function renderNav(cur){
+  nav.innerHTML = TABS.map(([id,label])=>`<button data-t="${id}" style="--c:${TABCOL[id]}" class="${id===cur?'active':''}">${esc(label)}${learned[id]?'<span class="chk">✓</span>':''}</button>`).join("");
+  nav.querySelectorAll("button").forEach(b=>b.onclick=()=>go(b.dataset.t));
+  const n = TOPICS.filter(t=>learned[t.id]).length;
+  $("#progress div").style.width = (100*n/TOPICS.length)+"%";
+  const a = nav.querySelector(".active"); if(a && a.scrollIntoView) a.scrollIntoView({block:"nearest",inline:"nearest"});
+}
+function go(id){ if(location.hash!=="#"+id) location.hash=id; else show(id); }
+function show(id){
+  if(!TABS.some(t=>t[0]===id)) id="uebersicht";
+  renderNav(id);
+  main.style.setProperty("--tc",TABCOL[id]);
+  if(id==="uebersicht") ov(); else if(byId[id]) topic(byId[id]);
+  else ({zeitleiste:tl,begriffe:gl,karten:fc,quiz:qz,zusammenhaenge:zh})[id]();
+  window.scrollTo(0,0);
+}
+
+
+const subPos={}, seen={};
+function subtabs(key,secs,intro,after){
+  if(subPos[key]==null) subPos[key]=0;
+  const i=Math.min(subPos[key],secs.length-1); seen[key]=seen[key]||{}; seen[key][i]=true;
+  const pv=secs[i-1], nx=secs[i+1];
+  main.innerHTML = intro + `<div class="subnav" id="sn">${secs.map((x,j)=>`<button data-i="${j}" class="${j===i?'on':''} ${seen[key][j]?'seen':''}"><span class="n">${j+1}</span>${esc(x.l)}</button>`).join("")}</div>
+  <div class="bar"><div style="width:${100*(i+1)/secs.length}%"></div></div><p class="stepinfo">Teil ${i+1} von ${secs.length}</p>
+  <div class="sec-card">${secs[i].h}</div>
+  <div class="pager">${pv?`<button class="pv"><small>← zurück</small>${esc(pv.l)}</button>`:''}${nx?`<button class="nx"><small>weiter →</small>${esc(nx.l)}</button>`:''}</div>`;
+  const set=j=>{subPos[key]=j;subtabs(key,secs,intro,after);document.querySelector("header").scrollIntoView();window.scrollTo(0,0)};
+  main.querySelectorAll("#sn button").forEach(b=>b.onclick=()=>set(+b.dataset.i));
+  const on=main.querySelector("#sn .on"); if(on){const sn=main.querySelector("#sn");sn.scrollLeft=on.offsetLeft-sn.offsetLeft-40;}
+  const p=main.querySelector(".pager .pv"), n=main.querySelector(".pager .nx");
+  if(p) p.onclick=()=>set(i-1); if(n) n.onclick=()=>set(i+1);
+  if(after) after();
+  return i;
+}
+function ov(){
+  const n = TOPICS.filter(t=>learned[t.id]).length;
+  const secs=[
+   {l:"Themen",h:`<h3>Die 7 Themen</h3><p class="small">Test am <b>17.11.2026</b>. Fortschritt: <b>${n} von ${TOPICS.length}</b> Themen gelernt. Tippe auf ein Thema, um es zu öffnen.</p>`+TOPICS.map((t,i)=>`<div class="card ov-topic" data-t="${t.id}" style="border-left:6px solid ${t.color}"><b style="color:${t.color}">${i+1}. ${esc(t.title)}</b> ${learned[t.id]?'<span class="badge-ok">✓ gelernt</span>':''}<br><span class="small" style="color:var(--ink)">${t.ueberblick}</span></div>`).join("")},
+   {l:"Das Wichtigste in 5 Punkten",h:`<h3>Das Wichtigste in 5 Punkten</h3><ol>${TOP5.map(x=>`<li style="margin:8px 0">${x}</li>`).join("")}</ol>`},
+   {l:"So lernst du",h:`<h3>So nutzt du die Seite</h3><ol><li>Öffne ein Thema und klicke dich mit <b>„weiter →“</b> Teil für Teil durch.</li><li><mark>Gelb markiert</mark> = sehr wichtig für den Test.</li><li>Beantworte die <b>Prüfungsfragen</b> zuerst selbst, dann Modellantwort öffnen.</li><li>Markiere das Thema als <b>„Gelernt“</b>.</li><li>Wiederhole mit <b>Karteikarten</b> und <b>Quiz</b>.</li></ol>${legend}`}];
+  subtabs("ov",secs,`<h2>Übersicht</h2>`,()=>main.querySelectorAll(".ov-topic").forEach(c=>c.onclick=()=>go(c.dataset.t)));
+}
+
+function topic(t){
+  const parts=t.body.split(/(?=<h3)/);
+  let pre=parts[0].includes("<h3")?"":parts.shift();
+  const secs=[{l:"Start",h:`<h3>Worum geht es?</h3>${legend}<div class="kern"><b>Kernaussage:</b> ${t.kern}</div>${pre}<h3>Ursachen · Verlauf · Folgen</h3><div class="scroll"><table>${t.ursachen.map(r=>`<tr><th style="width:110px">${r[0]}</th><td>${r[1]}</td></tr>`).join("")}</table></div>`}];
+  parts.forEach(p=>{const m=p.match(/<h3[^>]*data-s="([^"]+)"/);secs.push({l:m?m[1]:"Teil",h:p.replace(/(<h3[^>]*>)\s*[0-9A-Z]{1,2}[a-c]?\.\s*/,"$1")});});
+  secs.push({l:"Personen, Daten, Begriffe",h:`<h3>Wichtige Personen, Daten, Begriffe</h3><div class="scroll"><table><tr><th>Art</th><th>Name / Datum / Begriff</th><th>Bedeutung</th></tr>${t.personen.map(r=>`<tr><td class="small">${r[0]}</td><td><b>${r[1]}</b></td><td>${r[2]}</td></tr>`).join("")}</table></div>`});
+  secs.push({l:"★ Merke dir",h:`<div class="merke"><h3>Merke dir</h3><ul>${t.merke.map(m=>`<li>${m}</li>`).join("")}</ul></div>`});
+  secs.push({l:"Prüfungsfragen",h:`<h3>Mögliche Prüfungsfragen</h3><p class="small">Erst selbst antworten, dann auf die Frage tippen.</p>
+  ${t.fragen.map(f=>`<details class="q"><summary><span class="op">${f.op}</span>${f.q}</summary><div class="ans"><b>Modellantwort:</b> ${f.a}</div></details>`).join("")}
+  <p style="margin-top:16px"><button class="btn ${learned[t.id]?'done':''}" id="lb">${learned[t.id]?'✓ Gelernt (zum Zurücksetzen tippen)':'Als „Gelernt“ markieren'}</button></p>
+  <p><button class="btn sec" id="toq">Quiz zu diesem Thema</button> <button class="btn sec" id="tok">Karteikarten</button></p>`});
+  subtabs(t.id,secs,`<h2>${esc(t.title)} ${learned[t.id]?'<span class="badge-ok">✓</span>':''}</h2>`,()=>{
+    const lb=main.querySelector("#lb"); if(!lb) return;
+    lb.onclick=()=>{learned[t.id]=!learned[t.id];store.set("gspb_learned",learned);topic(t);renderNav(t.id)};
+    $("#toq").onclick=()=>{qState={topic:t.id};go("quiz")};
+    $("#tok").onclick=()=>{fcState={topic:t.id,i:0,order:null};go("karten")};
+  });
+}
+
+let tlFilter="alle";
+function tl(){
+  const f = tlFilter;
+  main.innerHTML = `<h2>Zeitleiste</h2><div class="toolbar">${[["alle","Alle"],...TOPICS.map(t=>[t.id,t.tab])].map(([id,l])=>`<button class="btn ${f===id?'on':''}" data-f="${id}">${esc(l)}</button>`).join("")}</div>
+  <div class="tl">${TIMELINE.filter(e=>f==="alle"||e[2]===f).map(e=>{const t=byId[e[2]];return `<div class="ev" style="--c:${t.color}"><span class="d">${e[0]}</span><span class="tag" style="--c:${t.color}">${esc(t.tab)}</span><br>${e[1]}</div>`}).join("")}</div>`;
+  main.querySelectorAll(".toolbar .btn").forEach(b=>b.onclick=()=>{tlFilter=b.dataset.f;tl()});
+}
+
+let glLetter="";
+function gl(){
+  const list = GLOSSAR.slice().sort((a,b)=>a[0].localeCompare(b[0],"de"));
+  const letters=[...new Set(list.map(g=>g[0][0].toUpperCase()))];
+  main.innerHTML = `<h2>Begriffe (A–Z)</h2><input type="search" id="gs" placeholder="Begriff suchen …" aria-label="Begriff suchen"><div class="letters"><button data-l="" class="${glLetter?'':'on'}">Alle</button>${letters.map(l=>`<button data-l="${l}" class="${glLetter===l?'on':''}">${l}</button>`).join("")}</div><p class="small" id="gc"></p><dl class="gl" id="gll"></dl>`;
+  const r = ()=>{const q=$("#gs").value.trim().toLowerCase();const m=list.filter(g=>(!q||(g[0]+" "+g[1]).toLowerCase().includes(q))&&(q||!glLetter||g[0][0].toUpperCase()===glLetter));
+    $("#gll").innerHTML=m.map(g=>`<dt>${esc(g[0])}</dt><dd>${esc(g[1])}</dd>`).join("");$("#gc").textContent=m.length+" von "+list.length+" Begriffen";};
+  $("#gs").oninput=r; main.querySelectorAll(".letters button").forEach(b=>b.onclick=()=>{glLetter=b.dataset.l;gl()}); r();
+}
+
+let fcState={topic:"alle",i:0,order:null};
+function fcCards(){return TOPICS.filter(t=>fcState.topic==="alle"||t.id===fcState.topic).flatMap(t=>t.karten.map(k=>({q:k[0],a:k[1],t})))}
+function fc(){
+  let cards=fcCards(); if(fcState.order) cards=fcState.order.map(i=>cards[i]).filter(Boolean);
+  if(fcState.i>=cards.length) fcState.i=0;
+  const c=cards[fcState.i];
+  main.innerHTML = `<h2>Karteikarten</h2><div class="toolbar">${[["alle","Alle"],...TOPICS.map(t=>[t.id,t.tab])].map(([id,l])=>`<button class="btn ${fcState.topic===id?'on':''}" data-f="${id}">${esc(l)}</button>`).join("")}</div>
+  <div class="fc-wrap"><div class="fc" id="card"><div class="face front"><div><div class="small" style="margin-bottom:8px"><span class="tag" style="--c:${c.t.color}">${esc(c.t.tab)}</span></div>${esc(c.q)}<div class="small" style="margin-top:12px">Tippen zum Umdrehen</div></div></div><div class="face back"><div>${esc(c.a)}</div></div></div></div>
+  <div class="fc-nav"><button class="btn sec" id="pv">← Zurück</button><span class="small">${fcState.i+1} / ${cards.length}</span><button class="btn sec" id="nx">Weiter →</button></div>
+  <p style="text-align:center"><button class="btn sec" id="sh">Mischen</button></p>`;
+  $("#card").onclick=()=>$("#card").classList.toggle("flip");
+  $("#pv").onclick=()=>{fcState.i=(fcState.i-1+cards.length)%cards.length;fc()};
+  $("#nx").onclick=()=>{fcState.i=(fcState.i+1)%cards.length;fc()};
+  $("#sh").onclick=()=>{fcState.order=shuffle([...Array(fcCards().length).keys()]);fcState.i=0;fc()};
+  main.querySelectorAll(".toolbar .btn").forEach(b=>b.onclick=()=>{fcState={topic:b.dataset.f,i:0,order:null};fc()});
+}
+
+let qState={topic:null};
+function qz(){
+  if(!qState.run){ return qStart(qState.topic); }
+  const R=qState.run;
+  if(R.i>=R.qs.length){
+    const p=Math.round(100*R.score/R.qs.length);
+    main.innerHTML=`<h2>Quiz: Ergebnis</h2><div class="card" style="text-align:center"><div style="font-size:2rem;font-weight:700">${R.score} / ${R.qs.length}</div><div>${p} % richtig · ${p>=90?'Ausgezeichnet!':p>=70?'Gut gemacht!':p>=50?'Nicht schlecht, wiederhole die Fehler.':'Lies die Themen noch einmal.'}</div></div>
+    ${R.wrong.length?`<h3>Das solltest du wiederholen</h3>${R.wrong.map(w=>`<div class="card"><b>${esc(w.q)}</b><br>Richtig: ${esc(w.o[w.r])}<br><span class="small">${esc(w.e)}</span></div>`).join("")}`:""}
+    <p><button class="btn" id="again">Neues Quiz</button></p>`;
+    $("#again").onclick=()=>{qState={topic:R.topic};qz()}; return;
+  }
+  const q=R.qs[R.i];
+  main.innerHTML=`<h2>Quiz: ${R.topic==="mix"?"Gemischt":esc(byId[R.topic].tab)}</h2><p class="small">Frage ${R.i+1} von ${R.qs.length} · Punkte: ${R.score}</p>
+  <div class="card"><b>${esc(q.q)}</b><div id="opts">${q.order.map(oi=>`<button class="qopt" data-o="${oi}">${esc(q.o[oi])}</button>`).join("")}</div><div id="exp"></div></div>`;
+  main.querySelectorAll(".qopt").forEach(b=>b.onclick=()=>{
+    if(q.done) return; q.done=true; const o=+b.dataset.o; const ok=o===q.r;
+    if(ok) R.score++; else R.wrong.push(q);
+    main.querySelectorAll(".qopt").forEach(x=>{const xo=+x.dataset.o; if(xo===q.r) x.classList.add("right"); else if(xo===o) x.classList.add("wrong");});
+    $("#exp").innerHTML=`<div class="qexp"><b>${ok?"Richtig!":"Leider falsch."}</b> ${esc(q.e)}</div><p><button class="btn" id="nq">${R.i+1<R.qs.length?"Nächste Frage →":"Ergebnis anzeigen"}</button></p>`;
+    $("#nq").onclick=()=>{R.i++;qz()};
+  });
+}
+function qStart(sel){
+  main.innerHTML=`<h2>Quiz</h2><p>Wähle ein Thema oder ein gemischtes Quiz (15 Fragen aus allen Themen).</p><div class="toolbar">${TOPICS.map(t=>`<button class="btn" data-q="${t.id}" style="background:#fff;color:${t.color};border-color:${t.color}">${esc(t.tab)} (${t.quiz.length})</button>`).join("")}<button class="btn on" data-q="mix">Gemischt (15)</button></div>`;
+  const start=id=>{const pool=id==="mix"?shuffle(TOPICS.flatMap(t=>t.quiz)).slice(0,15):shuffle(byId[id].quiz);
+    qState.run={topic:id,i:0,score:0,wrong:[],qs:pool.map(x=>({q:x[0],o:x[1],r:x[2],e:x[3],order:shuffle([...x[1].keys()])}))};qz();};
+  main.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>start(b.dataset.q));
+  if(sel){qState.topic=null;start(sel);}
+}
+
+function zh(){
+  const lab={u:["r-u","Ursache → Folge"],f:["r-f","Folge"],k:["r-k","Kontinuität"],b:["r-b","Bruch"]};
+  main.innerHTML=`<h2>Zusammenhänge</h2><p class="small">Wie hängen die Themen zusammen? <span class="rel r-u">Ursache → Folge</span><span class="rel r-f">Folge</span><span class="rel r-k">Kontinuität</span><span class="rel r-b">Bruch</span></p>
+  <div class="card"><b>Die große Linie:</b><div class="flow" style="margin-top:6px">${["Aufklärung","USA 1776/87","Frz. Revolution 1789","Napoleon 1799–1815","Wiener Kongress 1815","Vormärz 1815–1848","Revolutionen 1848"].map((x,i,a)=>`<div class="box" style="flex:1 1 110px;text-align:center"><b>${x}</b></div>${i<a.length-1?'<div class="arrow">→</div>':''}`).join("")}</div>
+  <p class="small">Parallel: Industrielle Revolution (Großbürgertum, Proletariat) stärkt Liberalismus und Nationalismus.</p></div>
+  <div class="zus-grid">${ZUSAMMENHAENGE.map(z=>`<div class="card"><span class="rel ${lab[z[0]][0]}">${lab[z[0]][1]}</span><br><b>${esc(z[1])}</b><br>${esc(z[2])}</div>`).join("")}</div>`;
+}
+
+window.addEventListener("hashchange",()=>{qState.run=null;show(location.hash.slice(1))});
+show(location.hash.slice(1)||"uebersicht");
+})();
+
+</script>
+</body>
+</html>
